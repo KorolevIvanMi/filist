@@ -1,4 +1,28 @@
 #:kivy 2.3.1
+
+<myLayout>:
+    search_but: search_but
+    search_text: search_text
+    canvas: 
+        Rectangle: 
+            pos: self.pos
+            size: self.size
+    TextInput:
+        id: search_text
+        text: "Поиск..."
+        size_hint: None, None
+        size: root.width - self.width/20 , 30
+        pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
+    Button:
+        id: search_but
+        text: 'S'
+        size_hint: None, None
+        size:30,30
+        pos: root.width + root.width / 4.7  , root.height - self.height - 10
+        on_press: root.searchOnPress()
+    
+
+        
 <FillistMainMenu>:
     
     canvas:
@@ -25,3 +49,6 @@
         top: root.top
         text: "F i l l i s t"
         font_name: "Calibri" 
+    myLayout:
+        pos: root.width/6, 0
+        size: root.width*4/6, root.height - root.height/8
