@@ -21,9 +21,10 @@
         pos: root.width + root.width / 4.7  , root.height - self.height - 10
         on_press: root.searchOnPress()
     
-          
-<FillistMainMenu>:
+        
     
+       
+<FillistMainMenu>:
     canvas:
         Color: 
             rgb : 1, 1, 1
@@ -51,9 +52,21 @@
         pos: root.width/6, 0
         size: root.width*4/6, root.height - root.height/8
     Label:
-        font_size: 30
-        pos: root.width/6, root.height *5/6
-        color: 0,0,0
+        color: (136/255,136/255,136/255)
+        font_size: 20
         text: 'Фильтр'
-        font_name: "Calibri"
-        size: 20,30
+        pos: root.width/6, root.height - root.height/4
+    Label:
+        color: (136/255,136/255,136/255)
+        font_size: 20
+        text: 'Статус'
+        pos: root.width/6 - 4, root.height - root.height/3.5
+    Label:
+        color: (136/255,136/255,136/255)
+        font_size: 20
+        text: 'Рейтинг'
+        pos: root.width/6  + 5, root.height - root.height/3.1
+
+        
+
+    
