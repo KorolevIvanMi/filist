@@ -5,12 +5,8 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 import os
+from FillistMainMenu import FillistMainMenu
 
-from myLayout import myLayout
-
-
-class FillistMainMenu(Widget):
-    pass
 
 class FillistApp(App):
     def build(self):
