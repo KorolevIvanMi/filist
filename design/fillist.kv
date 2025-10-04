@@ -1,11 +1,26 @@
 #:kivy 2.3.1
+<CustomDropdownButton>:
+    size_hint_y: None
+    height: '40dp'
+    background_color: self.button_color
+    background_normal: ''
+    color: 1, 1, 1, 1
+    font_name: "Calibri"
+
+<StatusDropdown>:
+    canvas.before:
+        Color:
+            rgb: 136/255,136/255,136/255
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
    
 
 <myLayout>:
     search_but: search_but
     search_text: search_text
-    
+    status_button: status_button 
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -21,13 +36,22 @@
         text: 'S'
         size_hint: None, None
         size:30,30
+        color: 1,1,1,1
         pos: root.width + root.width / 4.7  , root.height - self.height - 10
         on_press: root.searchOnPress()
- 
+    # Кнопка для работы с dropdown
+    Button:
+        id: status_button
+        text: 'Все'
+        size_hint: None, None
+        size: 150, 22
+        pos: root.width / 3  , root.height - self.height * 6.15
+        background_color: 136/255,136/255,136/255, 1
+        background_normal: ''
+        color: 1, 1, 1, 1
+        font_name: "Calibri"
+        on_release: root.open_status_dropdown()
         
-
-
-    
 <FillistMainMenu>:
     canvas:
         Color: 
@@ -58,8 +82,8 @@
     Label:
         color: (136/255,136/255,136/255)
         font_size: 20
-        text: 'Фильтр'
-        pos: root.width/6, root.height - root.height/4
+        text: 'Фильтры:'
+        pos: root.width/6 + 8, root.height - root.height/4
         font_name: "Calibri" 
     Label:
         color: (136/255,136/255,136/255)
