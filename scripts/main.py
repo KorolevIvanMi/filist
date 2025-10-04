@@ -1,7 +1,6 @@
 from kivy.config import Config
 Config.set('graphics', 'width', '1422')
 Config.set('graphics', 'height', '800')
-
 from kivy.app import App
 from kivy.lang import Builder
 import os
@@ -9,6 +8,7 @@ from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
 from FillistMainMenu import FillistMainMenu
+
 
 class FillistApp(App):
     def build(self):

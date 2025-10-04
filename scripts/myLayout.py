@@ -6,7 +6,7 @@ from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
 from kivy.uix.button import Button
-# from myDropDown import myDropDown
+
 
 class myLayout(FloatLayout):
     search_but = ObjectProperty(None)
