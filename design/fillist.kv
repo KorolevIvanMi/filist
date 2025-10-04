@@ -1,8 +1,11 @@
 #:kivy 2.3.1
 
+   
+
 <myLayout>:
     search_but: search_but
     search_text: search_text
+    
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -20,10 +23,11 @@
         size:30,30
         pos: root.width + root.width / 4.7  , root.height - self.height - 10
         on_press: root.searchOnPress()
-    
+ 
         
+
+
     
-       
 <FillistMainMenu>:
     canvas:
         Color: 
