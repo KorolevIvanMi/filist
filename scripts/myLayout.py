@@ -16,17 +16,19 @@ class myLayout(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.setup_status_dropdown()
+        
+# Поиск по названию
+    def searchOnPress(self):
+        text_to_find = self.search_text.text
+        self.search_text.text = "Поиск..."
+        print("Пользователь ищет: "+ text_to_find)
 
+# обработка dropdown меню
     def setup_status_dropdown(self):
         #Настройка dropdown для статуса
         self.status_dropdown = StatusDropdown()
         self.status_dropdown.bind(on_select=self.on_status_select)
 
-    def searchOnPress(self):
-        text_to_find = self.search_text.text
-        self.search_text.text = "Поиск..."
-        print("Пользователь ищет: "+ text_to_find)
-    
     def open_status_dropdown(self):
         #Открывает dropdown статуса
         if self.status_dropdown and self.status_button:
