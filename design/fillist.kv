@@ -1,4 +1,18 @@
 #:kivy 2.3.1
+
+<CustomButtonForRationg>:
+    color: 1,1,1,1
+    size_hint: (None, None)
+    size: 30,30
+<CustomLayotForRating>:
+    size : 150, 30
+    canvas.before: 
+        Color: 
+            rgb: 136/255,136/255,136/255
+        Rectangle: 
+            size : 150, 30
+            pos: self.pos 
+    
 <CustomDropdownButton>:
     size_hint_y: None
     height: '40dp'
@@ -51,6 +65,10 @@
         color: 1, 1, 1, 1
         font_name: "Calibri"
         on_release: root.open_status_dropdown()
+    CustomLayotForRating:
+        pos: root.width / 3  , root.height/1.23
+        
+         
         
 <FillistMainMenu>:
     canvas:

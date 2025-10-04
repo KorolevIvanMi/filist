@@ -6,7 +6,7 @@ from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
 from myDropDown import StatusDropdown
-
+from myRating import CustomLayotForRating, CustomButtonForRationg
 class myLayout(FloatLayout):
     search_but = ObjectProperty(None)
     search_text = ObjectProperty(None)
