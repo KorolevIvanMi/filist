@@ -1,7 +1,7 @@
 from kivy.uix.accordion import StringProperty
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.textinput import TextInput
+
 from kivy.properties import StringProperty
 
 class CustomButtonForRationg(Button):

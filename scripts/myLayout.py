@@ -43,7 +43,7 @@ class myLayout(FloatLayout):
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value
-# настройка статуса
+# настройка рейтинга небольшая
     def on_rating_selected(self):
         selected_rating = self.rating_layout.selected_rating
         print("Выбран рейтинг"+ str(selected_rating))
