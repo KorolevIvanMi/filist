@@ -12,7 +12,7 @@
         Rectangle: 
             size : 150, 30
             pos: self.pos 
-    
+
 <CustomDropdownButton>:
     size_hint_y: None
     height: '40dp'
@@ -35,6 +35,8 @@
     search_but: search_but
     search_text: search_text
     status_button: status_button 
+    rating_layout:rating_layout
+    rating_text:rating_text
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -45,6 +47,12 @@
         size_hint: None, None
         size: root.width - self.width/20 , 30
         pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
+    Label:
+        id: rating_text
+        font_size: 5
+        text: "-1"
+        pos: 0,0
+
     Button:
         id: search_but
         text: 'S'
@@ -66,6 +74,7 @@
         font_name: "Calibri"
         on_release: root.open_status_dropdown()
     CustomLayotForRating:
+        id:rating_layout
         pos: root.width / 3  , root.height/1.23
         
          

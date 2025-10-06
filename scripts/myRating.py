@@ -1,9 +1,14 @@
+from kivy.uix.accordion import StringProperty
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
+from kivy.properties import StringProperty
 
 class CustomButtonForRationg(Button):
     pass
+
 class CustomLayotForRating(BoxLayout):
+    selected_rating = StringProperty("")
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.width = 100
@@ -14,3 +19,5 @@ class CustomLayotForRating(BoxLayout):
             self.add_widget(btn)
     def buttonIsDown(self, txt):
         print("Выбран рейтинг"+ txt)
+        self.selected_rating = txt
+        

@@ -1,3 +1,4 @@
+from kivy.uix.settings import text_type
 
 from kivy.lang import Builder
 import os
@@ -6,7 +7,7 @@ from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
 from myDropDown import StatusDropdown
-from myRating import CustomLayotForRating, CustomButtonForRationg
+from myRating import CustomLayotForRating
 class myLayout(FloatLayout):
     
 
@@ -15,7 +16,10 @@ class myLayout(FloatLayout):
         search_but = ObjectProperty(None)
         search_text = ObjectProperty(None)
         status_dropdown = None
+        # rating_text = ObjectProperty(None)
         status_button = ObjectProperty(None)
+        rating_layout = None
+        self.rating_layout = CustomLayotForRating()
         self.setup_status_dropdown()
         
 # Поиск по названию
@@ -39,3 +43,11 @@ class myLayout(FloatLayout):
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value
+# настройка статуса
+    def on_rating_selected(self):
+        selected_rating = self.rating_layout.selected_rating
+        print("Выбран рейтинг"+ str(selected_rating))
+        
+ 
+
+        
