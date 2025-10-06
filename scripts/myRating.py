@@ -11,3 +11,4 @@ class CustomLayotForRating(BoxLayout):
         for i in range(5):
             btn = CustomButtonForRationg(text = str(i+1))
             self.add_widget(btn)
+    

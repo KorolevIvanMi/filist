@@ -8,13 +8,14 @@ from kivy.properties import (
 from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating, CustomButtonForRationg
 class myLayout(FloatLayout):
-    search_but = ObjectProperty(None)
-    search_text = ObjectProperty(None)
-    status_dropdown = None
-    status_button = ObjectProperty(None)
+    
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        search_but = ObjectProperty(None)
+        search_text = ObjectProperty(None)
+        status_dropdown = None
+        status_button = ObjectProperty(None)
         self.setup_status_dropdown()
         
 # Поиск по названию
