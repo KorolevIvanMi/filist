@@ -35,8 +35,7 @@
     search_but: search_but
     search_text: search_text
     status_button: status_button 
-    rating_layout:rating_layout
-    rating_text:rating_text
+    rating_layout: rating_layout 
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -47,11 +46,11 @@
         size_hint: None, None
         size: root.width - self.width/20 , 30
         pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
-    Label:
-        id: rating_text
-        font_size: 5
-        text: "-1"
-        pos: 0,0
+    # Label:
+    #     id: rating_text
+    #     font_size: 5
+    #     text: "-1"
+    #     pos: 0,0
 
     Button:
         id: search_but
@@ -76,7 +75,7 @@
     CustomLayotForRating:
         id:rating_layout
         pos: root.width / 3  , root.height/1.23
-        
+        on_selected_rating: root.on_rating_selected(args[1])
          
         
 <FillistMainMenu>:

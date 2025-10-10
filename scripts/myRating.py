@@ -17,7 +17,8 @@ class CustomLayotForRating(BoxLayout):
             btn = CustomButtonForRationg(text = str(i+1))
             btn.bind(on_release = lambda btn: self.buttonIsDown(btn.text))
             self.add_widget(btn)
+            
     def buttonIsDown(self, txt):
-        print("Выбран рейтинг"+ txt)
+        
         self.selected_rating = txt
         

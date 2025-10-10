@@ -10,15 +10,15 @@ from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating
 class myLayout(FloatLayout):
     
-
+    rating_layout = ObjectProperty(None)
+    search_but = ObjectProperty(None)
+    search_text = ObjectProperty(None)
+    status_dropdown = None
+    status_button = ObjectProperty(None)
+    rating_layout = None
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        search_but = ObjectProperty(None)
-        search_text = ObjectProperty(None)
-        status_dropdown = None
         # rating_text = ObjectProperty(None)
-        status_button = ObjectProperty(None)
-        rating_layout = None
         self.rating_layout = CustomLayotForRating()
         self.setup_status_dropdown()
         
@@ -43,10 +43,13 @@ class myLayout(FloatLayout):
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value
+
 # настройка рейтинга небольшая
-    def on_rating_selected(self):
-        selected_rating = self.rating_layout.selected_rating
-        print("Выбран рейтинг"+ str(selected_rating))
+    # Обработка выбора рейтинга
+    def on_rating_selected(self, value):
+       
+        print(f"Выбран рейтинг: {value}")
+        
         
  
 
