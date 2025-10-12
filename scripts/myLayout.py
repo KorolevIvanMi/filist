@@ -18,7 +18,7 @@ class myLayout(FloatLayout):
     rating_layout = None
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # rating_text = ObjectProperty(None)
+        
         self.rating_layout = CustomLayotForRating()
         self.setup_status_dropdown()
         
