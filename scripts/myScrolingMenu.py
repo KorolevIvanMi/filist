@@ -5,6 +5,7 @@ from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty
+from myDataBase import myDataBase
 
 class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
     name = StringProperty()
@@ -30,6 +31,8 @@ class RecycleGridLayout(GridLayout):
 class RV(RecycleView):
     def __init__(self, data_list=None, **kwargs):
         super(RV, self).__init__(**kwargs)
+        db = myDataBase()
+        data_list = db.get_all_films()
         if data_list is None:
             # Данные по умолчанию, если список не передан
             data_list = [

@@ -51,13 +51,14 @@ class myLayout(FloatLayout):
         if self.status_button:
             self.status_button.text = value
 
-# настройка рейтинга небольшая
-    # Обработка выбора рейтинга
+
+# Обработка выбора рейтинга
     def on_rating_selected(self, value):
        
         print(f"Выбран рейтинг: {value}")
         
 
- 
+    
+        
 
         
