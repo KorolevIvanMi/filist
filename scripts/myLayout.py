@@ -9,6 +9,7 @@ from kivy.properties import (
 from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating
 from myDataBase import myDataBase
+from myScrolingMenu import RV, StatefulLabel, RecycleGridLayout
 class myLayout(FloatLayout):
     
     db = myDataBase()
@@ -18,11 +19,14 @@ class myLayout(FloatLayout):
     status_dropdown = None
     status_button = ObjectProperty(None)
     rating_layout = None
+    scroll_menu = ObjectProperty(None) 
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
         self.rating_layout = CustomLayotForRating()
         self.setup_status_dropdown()
+        
         
 # Поиск по названию
     def searchOnPress(self):
@@ -53,7 +57,7 @@ class myLayout(FloatLayout):
        
         print(f"Выбран рейтинг: {value}")
         
-        
+
  
 
         

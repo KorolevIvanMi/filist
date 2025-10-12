@@ -1,5 +1,92 @@
 #:kivy 2.3.1
 
+<StatefulLabel>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: dp(40)
+    
+    Label:
+        text: root.name
+        size_hint_x: 0.2
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        padding: (10,0)
+    
+    Label:
+        text: root.genre
+        size_hint_x: 0.2
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        padding: (10,0)
+    
+    Label:
+        text: root.status
+        size_hint_x: 0.15
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        padding: (10,0)
+    
+    BoxLayout:
+        size_hint_x: 0.3
+        spacing: 2
+        padding: 2
+        
+        Button:
+            text: '1'
+            disabled: True
+            size_hint_x: 0.2
+        Button:
+            text: '2'
+            disabled: True
+            size_hint_x: 0.2
+        Button:
+            text: '3'
+            disabled: True
+            size_hint_x: 0.2
+        Button:
+            text: '4'
+            disabled: True
+            size_hint_x: 0.2
+        Button:
+            text: '5'
+            disabled: True
+            size_hint_x: 0.2
+    
+    Widget:
+        size_hint_x: 0.05
+    
+    BoxLayout:
+        size_hint_x: 0.1
+        spacing: 2
+        
+        Button:
+            text: 'A'
+            size_hint_x: 0.5
+        Button:
+            text: 'B'
+            size_hint_x: 0.5
+
+<RV>:
+    viewclass: 'StatefulLabel'
+    RecycleGridLayout:
+        cols: 1
+        size_hint_y: None
+        height: self.minimum_height
+        default_size_hint: 1, None
+        default_size: 0, dp(40)
+        
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1  # Светло-серый цвет
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
 <CustomButtonForRationg>:
     color: 1,1,1,1
     size_hint: (None, None)
@@ -8,12 +95,7 @@
     size: 30,30
 <CustomLayotForRating>:
     size : 150, 30
-    # canvas.before: 
-    #     Color: 
-    #         rgb: 136/255,136/255,136/255
-        # Rectangle: 
-        #     size : 150, 30
-        #     pos: self.pos 
+
 
 <CustomDropdownButton>:
     size_hint_y: None
@@ -38,6 +120,7 @@
     search_text: search_text
     status_button: status_button 
     rating_layout: rating_layout 
+    scroll_menu: scroll_menu
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -48,11 +131,6 @@
         size_hint: None, None
         size: root.width - self.width/20 , 30
         pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
-    # Label:
-    #     id: rating_text
-    #     font_size: 5
-    #     text: "-1"
-    #     pos: 0,0
 
     Button:
         id: search_but
@@ -78,7 +156,10 @@
         id:rating_layout
         pos: root.width / 3  , root.height/1.23
         on_selected_rating: root.on_rating_selected(args[1])
-         
+    RV:
+        id: scroll_menu
+        pos: root.width/4, rating_layout.y - rating_layout.height - 20  # 20px отступ снизу от rating_layout
+        size: root.width * 2/3, root.height - rating_layout.height - 100  # Занимает оставшееся пространство
         
 <FillistMainMenu>:
     canvas:
