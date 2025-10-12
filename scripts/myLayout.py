@@ -69,6 +69,6 @@ class myLayout(FloatLayout):
             
     def refresh_scroll_menu(self):
         """Метод для принудительного обновления списка"""
-        self.setup_scrolling_menu()
+        self.setup_scroling_menu()
 
         

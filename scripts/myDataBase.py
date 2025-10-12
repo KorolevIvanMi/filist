@@ -1,5 +1,6 @@
 import sqlite3 as sq
 
+
 class myDataBase:
     def __init__(self, db_path="B:/Filist project/dataBase/film_base.db"):
         self.db_path = db_path
@@ -86,7 +87,7 @@ class myDataBase:
             con.row_factory = sq.Row 
             cur = con.cursor()
             cur.execute('''
-                        SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description FROM filmlist
+                        SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
                         JOIN genre ON filmlist.genre  = genre.genre_id
                         JOIN status ON filmlist.status = status.status_id
                         ''')
@@ -99,13 +100,20 @@ class myDataBase:
                     'status': row['status_name'], 
                     'rating': row['rating'],
                     'active': False,  
-                    'description': row['description']  
+                    'description': row['description'] , 
+                    'film_id': row['film_id']
                 }
                 films.append(film_dict)
             return films
+    def del_film(self, film_id):
+        
+        with sq.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute('''DELETE FROM filmlist where film_id = ?''', (film_id,))
             
+            return 0
 
 if __name__ == "__main__":
     db = myDataBase()
-    # db.db_init()
+    db.db_init()
     

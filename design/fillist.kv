@@ -38,10 +38,46 @@
         color: (0,0,0)
     
 
-    CustomLayotForRating:
+    
+    BoxLayout:
+        size : 150, 30
         size_hint_x: 0.3
-        
-        
+        Button:
+            color: 1,1,1,1
+            text: "1"
+            size_hint: (None, None)
+            background_normal: ''
+            background_color: 136/255, 136/255, 136/255, 1
+            size: 30,30 
+        Button:
+            color: 1,1,1,1
+            text: "2"
+            size_hint: (None, None)
+            background_normal: ''
+            background_color: 136/255, 136/255, 136/255, 1
+            size: 30,30 
+        Button:
+            color: 1,1,1,1
+            text: "3"
+            size_hint: (None, None)
+            background_normal: ''
+            background_color: 136/255, 136/255, 136/255, 1
+            size: 30,30 
+        Button:
+            color: 1,1,1,1
+            text: "4"
+            size_hint: (None, None)
+            background_normal: ''
+            background_color: 136/255, 136/255, 136/255, 1
+            size: 30,30 
+        Button:
+            color: 1,1,1,1
+            text: "5"
+            size_hint: (None, None)
+            background_normal: ''
+            background_color: 136/255, 136/255, 136/255, 1
+            size: 30,30 
+
 
     Widget:
         size_hint_x: 0.05
@@ -56,6 +92,7 @@
         Button:
             text: 'Del'
             size_hint_x: 0.2
+            on_release: root.del_btn_realise(self)
 
 <RV>:
     viewclass: 'StatefulLabel'

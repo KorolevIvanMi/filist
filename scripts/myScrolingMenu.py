@@ -1,3 +1,4 @@
+from kivy.uix.actionbar import partial
 from kivy.uix.accordion import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.recycleview import RecycleView
@@ -21,7 +22,15 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
         self.genre = data.get('genre', '')
         self.status = data.get('status', '')
         self.rating = data.get('rating', '')
+        self.film_id = data.get('film_id', '')
         super(StatefulLabel, self).refresh_view_attrs(rv, index, data)
+
+    def del_btn_realise(self, btn):
+        db = myDataBase()
+        db.del_film(self.film_id)
+        if hasattr(self.parent.parent, 'update_data'):
+            new_data = db.get_all_films()
+            self.parent.parent.update_data(new_data)
 
 class RecycleGridLayout(GridLayout):
     def __init__(self, **kwargs):
@@ -36,13 +45,10 @@ class RV(RecycleView):
         if data_list is None:
             # Данные по умолчанию, если список не передан
             data_list = [
-                {'name': 'Фильм 1', 'genre': 'Драма', 'status': 'Новый', 'rating': 4, 'active': False},
-                {'name': 'Фильм 2', 'genre': 'Комедия', 'status': 'Просмотрено', 'rating': 4, 'active': False},
-                {'name': 'Фильм 3', 'genre': 'Боевик', 'status': 'В процессе', 'rating': 4, 'active': False},
-                {'name': 'Фильм 4', 'genre': 'Фантастика', 'status': 'Новый', 'rating': 4, 'active': False},
-                {'name': 'Фильм 5', 'genre': 'Ужасы', 'status': 'Просмотрено', 'rating': 4, 'active': False},
+                {'name': 'Фильм 1', 'genre': 'Драма', 'status': 'Новый', 'rating': 4, 'film_id': 1,'active': False}
             ]
         self.data = data_list
     def update_data(self, new_data_list):
         self.data = new_data_list
-        # self.refresh_from_data()
+    
+        
