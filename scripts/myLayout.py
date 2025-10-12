@@ -6,6 +6,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import (
     NumericProperty, ReferenceListProperty, ObjectProperty
 )
+from kivy.clock import Clock
 from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating
 from myDataBase import myDataBase
@@ -27,6 +28,8 @@ class myLayout(FloatLayout):
         self.rating_layout = CustomLayotForRating()
         self.setup_status_dropdown()
         
+        
+        Clock.schedule_once(self.setup_scroling_menu, 0.1)
         
 # Поиск по названию
     def searchOnPress(self):
@@ -57,8 +60,15 @@ class myLayout(FloatLayout):
        
         print(f"Выбран рейтинг: {value}")
         
+    def setup_scroling_menu(self, dt = None):
+        data_from_db = self.db.get_all_films()
+        print(data_from_db)
+        if self.scroll_menu:
+            self.scroll_menu.update_data(data_from_db)
 
-    
-        
+            
+    def refresh_scroll_menu(self):
+        """Метод для принудительного обновления списка"""
+        self.setup_scrolling_menu()
 
         

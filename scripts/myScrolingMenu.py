@@ -31,8 +31,8 @@ class RecycleGridLayout(GridLayout):
 class RV(RecycleView):
     def __init__(self, data_list=None, **kwargs):
         super(RV, self).__init__(**kwargs)
-        db = myDataBase()
-        data_list = db.get_all_films()
+        
+        
         if data_list is None:
             # Данные по умолчанию, если список не передан
             data_list = [
@@ -43,3 +43,6 @@ class RV(RecycleView):
                 {'name': 'Фильм 5', 'genre': 'Ужасы', 'status': 'Просмотрено', 'rating': 4, 'active': False},
             ]
         self.data = data_list
+    def update_data(self, new_data_list):
+        self.data = new_data_list
+        # self.refresh_from_data()
