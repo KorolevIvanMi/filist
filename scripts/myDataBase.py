@@ -3,7 +3,6 @@ import sqlite3 as sq
 class myDataBase:
     def __init__(self, db_path="B:/Filist project/dataBase/film_base.db"):
         self.db_path = db_path
-    
     def db_init(self):
         pre_films = [
             ("Зелёная миля", 1, 2, 4, "Фильм жестокий, но очень поучительный и ценный"),
@@ -75,7 +74,12 @@ class myDataBase:
             for film in pre_films:
                 cur.execute('''INSERT INTO filmlist (name, genre, status, rating, description) 
                             VALUES(?, ?, ?, ?, ?)''', film)
-
+    
+    def find_film_by_name(self, film_name):
+        with sq.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute('''SELECT name FROM filmlist WHERE name =  ?''', (film_name,))
+            return cur.fetchall() 
 if __name__ == "__main__":
     db = myDataBase()
     db.db_init()

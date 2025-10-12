@@ -8,8 +8,10 @@ from kivy.properties import (
 )
 from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating
+from myDataBase import myDataBase
 class myLayout(FloatLayout):
     
+    db = myDataBase()
     rating_layout = ObjectProperty(None)
     search_but = ObjectProperty(None)
     search_text = ObjectProperty(None)
@@ -26,7 +28,8 @@ class myLayout(FloatLayout):
     def searchOnPress(self):
         text_to_find = self.search_text.text
         self.search_text.text = "Поиск..."
-        print("Пользователь ищет: "+ text_to_find)
+        s = self.db.find_film_by_name(text_to_find)
+        print("Пользователь ищет: " , s[0][0])
 
 # обработка dropdown меню
     def setup_status_dropdown(self):
