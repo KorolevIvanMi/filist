@@ -123,7 +123,7 @@
     background_color: self.button_color
     background_normal: ''
     color: 1, 1, 1, 1
-    font_name: "Calibri"
+    font_name: "./fonts/calibri.ttf"
 
 <StatusDropdown>:
     canvas.before:
@@ -170,7 +170,7 @@
         background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
-        font_name: "Calibri"
+        font_name: "./fonts/calibri.ttf"
         on_release: root.open_status_dropdown()
     CustomLayotForRating:
         id:rating_layout
@@ -204,7 +204,7 @@
         center: root.center
         top: root.top
         text: "F i l l i s t"
-        font_name: "Calibri" 
+        font_name: "./fonts/calibri.ttf"
     myLayout:
         pos: root.width/6, 0
         size: root.width*4/6, root.height - root.height/8
@@ -213,19 +213,19 @@
         font_size: 20
         text: 'Фильтры:'
         pos: root.width/6 + 8, root.height - root.height/4
-        font_name: "Calibri" 
+        font_name: "./fonts/calibri.ttf"
     Label:
         color: (136/255,136/255,136/255)
         font_size: 20
         text: 'Статус'
         pos: root.width/6 - 4, root.height - root.height/3.5
-        font_name: "Calibri" 
+        font_name: "./fonts/calibri.ttf"
     Label:
         color: (136/255,136/255,136/255)
         font_size: 20
         text: 'Рейтинг'
         pos: root.width/6  + 3, root.height - root.height/3.1
-        font_name: "Calibri" 
+        font_name: "./fonts/calibri.ttf"
 
         
 
