@@ -1,0 +1,45 @@
+<myLayout>:
+    search_but: search_but
+    search_text: search_text
+    status_button: status_button 
+    rating_layout: rating_layout 
+    scroll_menu: scroll_menu
+    canvas: 
+        Rectangle: 
+            pos: self.pos
+            size: self.size
+    TextInput:
+        id: search_text
+        text: "Поиск..."
+        size_hint: None, None
+        size: root.width - self.width/20 , 30
+        pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
+
+    Button:
+        id: search_but
+        text: 'S'
+        size_hint: None, None
+        size:30,30
+        color: 1,1,1,1
+        pos: root.width + root.width / 4.7  , root.height - self.height - 10
+        on_press: root.searchOnPress()
+    # Кнопка для работы с dropdown
+    Button:
+        id: status_button
+        text: 'Все'
+        size_hint: None, None
+        size: 150, 22
+        pos: root.width / 3  , root.height - self.height * 6.15
+        background_color: 136/255,136/255,136/255, 1
+        background_normal: ''
+        color: 1, 1, 1, 1
+        font_name: "./fonts/calibri.ttf"
+        on_release: root.open_status_dropdown()
+    CustomLayotForRating:
+        id:rating_layout
+        pos: root.width / 3  , root.height/1.23
+        on_selected_rating: root.on_rating_selected(args[1])
+    RV:
+        id: scroll_menu
+        pos: root.width/4, rating_layout.y - rating_layout.height - 20  # 20px отступ снизу от rating_layout
+        size: root.width * 2/3, root.height - rating_layout.height - 100  # Занимает оставшееся пространство

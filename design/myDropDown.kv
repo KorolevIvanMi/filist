@@ -1,0 +1,15 @@
+<CustomDropdownButton>:
+    size_hint_y: None
+    height: '40dp'
+    background_color: self.button_color
+    background_normal: ''
+    color: 1, 1, 1, 1
+    font_name: "./fonts/calibri.ttf"
+
+<StatusDropdown>:
+    canvas.before:
+        Color:
+            rgb: 136/255,136/255,136/255
+        Rectangle:
+            pos: self.pos
+            size: self.size
