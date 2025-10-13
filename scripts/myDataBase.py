@@ -106,7 +106,7 @@ class myDataBase:
                 films.append(film_dict)
             return films
     def del_film(self, film_id):
-        
+            
         with sq.connect(self.db_path) as con:
             cur = con.cursor()
             cur.execute('''DELETE FROM filmlist where film_id = ?''', (film_id,))
