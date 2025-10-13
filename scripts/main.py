@@ -12,12 +12,11 @@ from FillistMainMenu import FillistMainMenu
 
 
 class FillistApp(App):
-    def build(self):
-        
-        kv_path = os.path.join(os.path.dirname(__file__), '..', 'design', 'fillist.kv')
-        Builder.load_file(kv_path)
-        application = FillistMainMenu()
-        return application
+        def build(self):
+            kv_path = os.path.join(os.path.dirname(__file__), '..', 'design', 'fillist.kv')
+            Builder.load_file(kv_path)
+            application = FillistMainMenu()
+            return application
 
 if __name__ == '__main__':
     FillistApp().run()

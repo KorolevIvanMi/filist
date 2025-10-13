@@ -2,7 +2,7 @@ import sqlite3 as sq
 
 
 class myDataBase:
-    def __init__(self, db_path="B:/Filist project/dataBase/film_base.db"):
+    def __init__(self, db_path="./dataBase/film_base.db"):
         self.db_path = db_path
     def db_init(self):
         pre_films = [
