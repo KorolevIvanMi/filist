@@ -21,9 +21,10 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
         self.name = data.get('name', '')
         self.genre = data.get('genre', '')
         self.status = data.get('status', '')
-        self.rating = data.get('rating', '')
+        self.rating = data.get('rating', 0)
         self.film_id = data.get('film_id', '')
         super(StatefulLabel, self).refresh_view_attrs(rv, index, data)
+        self.update_rating_buttons()
 
     def del_btn_realise(self, btn):
         db = myDataBase()
@@ -31,6 +32,35 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
         if hasattr(self.parent.parent, 'update_data'):
             new_data = db.get_all_films()
             self.parent.parent.update_data(new_data)
+
+    def update_rating_buttons(self):
+        # Ждем пока все виджеты создадутся
+        from kivy.clock import Clock
+        Clock.schedule_once(self._update_rating_buttons)
+
+    def _update_rating_buttons(self, dt):
+        """Фактическое обновление кнопок"""
+        if not hasattr(self, 'ids'):
+            return
+            
+        # Ищем кнопки рейтинга (они находятся во втором BoxLayout)
+        rating_layout = None
+        for child in self.children:
+            if isinstance(child, BoxLayout) and len(child.children) == 5:
+                # Это layout с кнопками рейтинга
+                rating_layout = child
+                break
+        
+        if rating_layout:
+            for i, button in enumerate(rating_layout.children[::-1]):  # reversed
+                rating_value = i + 1
+                if rating_value <= self.rating:
+                    # Кнопка активная - другой цвет
+                    button.background_color = (1, 0.8, 0, 1)  # Золотой для активных
+                else:
+                    # Кнопка неактивная - серый цвет
+                    button.background_color = (136/255, 136/255, 136/255, 1)
+
 
 class RecycleGridLayout(GridLayout):
     def __init__(self, **kwargs):
