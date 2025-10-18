@@ -65,7 +65,7 @@ class myLayout(FloatLayout):
     def on_rating_selected(self, value):
        
         print(f"Выбран рейтинг: {value}")
-        
+# обработка списка фильмов  
     def setup_scroling_menu(self, dt = None):
         data_from_db = self.db.get_all_films()
         print(data_from_db)
@@ -73,8 +73,13 @@ class myLayout(FloatLayout):
             self.scroll_menu.update_data(data_from_db)
 
             
-    def refresh_scroll_menu(self):
+    # def refresh_scroll_menu(self):
 
-        self.setup_scroling_menu()
+    #     self.setup_scroling_menu()
+# обработка фильтров
+    def apply_filters(self):
+        film_status = self.status_button.text
+        film_rating = self.rating_layout.selected_rating
+        print(film_status,"  ", film_rating)
 
         

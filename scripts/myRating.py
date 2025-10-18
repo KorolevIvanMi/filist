@@ -8,7 +8,7 @@ class CustomButtonForRationg(Button):
     pass
 
 class CustomLayotForRating(BoxLayout):
-    selected_rating = StringProperty("")
+    selected_rating = StringProperty(None)
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.width = 100
