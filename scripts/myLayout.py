@@ -56,6 +56,9 @@ class myLayout(FloatLayout):
             self.status_dropdown.open(self.status_button)
 
     def on_status_select(self, instance, value):
+
+        if value == "В процессе" or value == "В планах":
+            self.rating_layout.recetChoice()
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value
@@ -73,13 +76,17 @@ class myLayout(FloatLayout):
             self.scroll_menu.update_data(data_from_db)
 
             
-    # def refresh_scroll_menu(self):
 
-    #     self.setup_scroling_menu()
 # обработка фильтров
     def apply_filters(self):
         film_status = self.status_button.text
         film_rating = self.rating_layout.selected_rating
         print(film_status,"  ", film_rating)
-
-        
+        films_by_filtrs = self.db.find_films_with_filters(film_status, film_rating)
+        self.scroll_menu.update_data(films_by_filtrs)
+# сброс параметров фильмов
+    def recet_filters(self):
+        self.status_button.text = "Все"
+        self.rating_layout.recetChoice()
+        data_from_db = self.db.get_all_films()
+        self.scroll_menu.update_data(data_from_db)

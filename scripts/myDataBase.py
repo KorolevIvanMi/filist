@@ -133,6 +133,52 @@ class myDataBase:
             
             return 0
 
+    def find_films_with_filters(self, film_status, film_rating):
+         with sq.connect(self.db_path) as con:
+            con.row_factory = sq.Row 
+            cur = con.cursor()
+            if(film_rating != '' and film_status != "Все"):
+                cur.execute('''
+                            SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
+                            JOIN genre ON filmlist.genre  = genre.genre_id
+                            JOIN status ON filmlist.status = status.status_id
+                            WHERE status.name = ? AND rating = ?
+                            ''', (film_status, film_rating))
+            elif(film_rating != '' and film_status == "Все"):
+                cur.execute('''
+                            SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
+                            JOIN genre ON filmlist.genre  = genre.genre_id
+                            JOIN status ON filmlist.status = status.status_id
+                            WHERE rating = ?
+                            ''', (film_rating,))    
+            elif(film_rating == '' and film_status == "Все"):
+                cur.execute('''
+                            SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
+                            JOIN genre ON filmlist.genre  = genre.genre_id
+                            JOIN status ON filmlist.status = status.status_id
+                            ''')
+            elif(film_rating == '' and film_status != "Все"):
+                cur.execute('''
+                            SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
+                            JOIN genre ON filmlist.genre  = genre.genre_id
+                            JOIN status ON filmlist.status = status.status_id
+                            WHERE status.name = ? 
+                            ''', (film_status,))
+            results = cur.fetchall()
+            films = []
+            for row in results:
+                film_dict = {
+                    'name': row['name'],
+                    'genre': row['genre_name'],  
+                    'status': row['status_name'], 
+                    'rating': row['rating'],
+                    
+                    'description': row['description'], 
+                    'film_id': row['film_id'],
+                    'active': False,  
+                }
+                films.append(film_dict)
+            return films
 if __name__ == "__main__":
     db = myDataBase()
     db.db_init()
