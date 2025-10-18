@@ -78,9 +78,29 @@ class myDataBase:
     
     def find_film_by_name(self, film_name):
         with sq.connect(self.db_path) as con:
+            con.row_factory = sq.Row 
             cur = con.cursor()
-            cur.execute('''SELECT name FROM filmlist WHERE name =  ?''', (film_name,))
-            return cur.fetchall() 
+            cur.execute('''
+                        SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
+                        JOIN genre ON filmlist.genre  = genre.genre_id
+                        JOIN status ON filmlist.status = status.status_id
+                        WHERE filmlist.name = ?
+                        ''', (film_name,))
+            results = cur.fetchall()
+            films = []
+            for row in results:
+                film_dict = {
+                    'name': row['name'],
+                    'genre': row['genre_name'],  
+                    'status': row['status_name'], 
+                    'rating': row['rating'],
+                    
+                    'description': row['description'], 
+                    'film_id': row['film_id'],
+                    'active': False,  
+                }
+                films.append(film_dict)
+            return films
         
     def get_all_films(self):
         with sq.connect(self.db_path) as con:

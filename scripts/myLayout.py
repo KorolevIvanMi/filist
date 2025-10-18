@@ -36,7 +36,11 @@ class myLayout(FloatLayout):
         text_to_find = self.search_text.text
         self.search_text.text = "Поиск..."
         s = self.db.find_film_by_name(text_to_find)
-        print("Пользователь ищет: " , s[0][0])
+        if(text_to_find == "Поиск..." or text_to_find == "all"):
+             data_from_db = self.db.get_all_films()
+             self.scroll_menu.update_data(data_from_db)
+        else:
+            self.scroll_menu.update_data(s)
 
 # обработка dropdown меню
     def setup_status_dropdown(self):
@@ -68,7 +72,7 @@ class myLayout(FloatLayout):
 
             
     def refresh_scroll_menu(self):
-        """Метод для принудительного обновления списка"""
+
         self.setup_scroling_menu()
 
         
