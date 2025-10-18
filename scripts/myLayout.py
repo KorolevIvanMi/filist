@@ -21,6 +21,8 @@ class myLayout(FloatLayout):
     status_button = ObjectProperty(None)
     rating_layout = None
     scroll_menu = ObjectProperty(None) 
+    accept_filrs_btn = ObjectProperty(None)
+    reset_filtrs_btn = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

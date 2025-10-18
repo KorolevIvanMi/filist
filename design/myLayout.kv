@@ -4,6 +4,8 @@
     status_button: status_button 
     rating_layout: rating_layout 
     scroll_menu: scroll_menu
+    accept_filrs_btn: accept_filrs_btn
+    reset_filtrs_btn: reset_filtrs_btn
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -39,6 +41,28 @@
         id:rating_layout
         pos: root.width / 3  , root.height/1.23
         on_selected_rating: root.on_rating_selected(args[1])
+
+    Button:
+        id: accept_filrs_btn
+        text: "Acpt"
+        size_hint: (None, None)
+        size: 40, 30
+        pos:  root.width/2.1  , root.height/1.23
+        background_color: 136/255,136/255,136/255, 1
+        background_normal: ''
+        color: 1, 1, 1, 1
+        font_name: "./fonts/calibri.ttf"
+    Button:
+        id: reset_filtrs_btn
+        text: "Rst"
+        size_hint: (None, None)
+        size: 40, 30
+        pos:  root.width/1.96  , root.height/1.23
+        background_color: 136/255,136/255,136/255, 1
+        background_normal: ''
+        color: 1, 1, 1, 1
+        font_name: "./fonts/calibri.ttf"
+
     RV:
         id: scroll_menu
         pos: root.width/4, rating_layout.y - rating_layout.height - 20  # 20px отступ снизу от rating_layout
