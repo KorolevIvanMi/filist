@@ -37,6 +37,7 @@ class myLayout(FloatLayout):
     def searchOnPress(self):
         text_to_find = self.search_text.text
         self.search_text.text = "Поиск..."
+        print("Search in progress...")
         s = self.db.find_film_by_name(text_to_find)
         if(text_to_find == "Поиск..." or text_to_find == "all"):
              data_from_db = self.db.get_all_films()
