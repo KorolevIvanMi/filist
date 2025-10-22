@@ -10,20 +10,24 @@ from kivy.properties import (
 )
 from kivy.uix.screenmanager import ScreenManager, Screen
 from FillistMainMenu import FillistMainMenu
-
+from addFilmMenu import AddFilmMenu
 class mainScreen(Screen):
-     pass
+    pass
 
+class AddFilmMenuScreen(Screen):
+    pass
 
 class FillistApp(App):
         def build(self):
-            sm = ScreenManager()
-            sm.add_widget(mainScreen(name = "mainScreen"))
+            # СНАЧАЛА загружаем KV файл
             kv_path = os.path.join(os.path.dirname(__file__), '..', 'design', 'fillist.kv')
             Builder.load_file(kv_path)
-            application = FillistMainMenu()
-            application.add_widget(sm)
-            return application
+            
+            # ПОТОМ создаем виджеты
+            sm = ScreenManager()
+            sm.add_widget(mainScreen())
+            sm.add_widget(AddFilmMenuScreen())
+            return sm
 
 if __name__ == '__main__':
     FillistApp().run()
