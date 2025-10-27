@@ -31,12 +31,29 @@
         pos: root.width-self.width*3, 0
         on_release: root.acceptOnRelease()
     Label:
-        color: (136/255,136/255,136/255)
-        text:'Название'
-        font_size: 30
-        
-        pos: root.width / 5.2, root.height/8*6.2
-
+        color: (0,0,0)
+        text:'Название фильма:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30        
+        pos: root.width / 4.4, root.height/8*6.2
+    Label:
+        color: (0,0,0)
+        text: 'Жанр:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.4, root.height/8*5.7
+    Label:
+        color:(0,0,0)
+        text: 'Статус:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.35, root.height/8*5.2
+    Label:
+        color: (0,0,0)
+        text: "Комментарии:"
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.35, root.height/8*5
 
 <AddFilmMenuScreen>:
     
