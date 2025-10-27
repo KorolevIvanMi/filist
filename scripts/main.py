@@ -11,6 +11,7 @@ from kivy.properties import (
 from kivy.uix.screenmanager import ScreenManager, Screen
 from FillistMainMenu import FillistMainMenu
 from addFilmMenu import AddFilmMenu
+
 class mainScreen(Screen):
     pass
 

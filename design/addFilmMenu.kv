@@ -1,4 +1,5 @@
 <AddFilmMenu>:
+    add_film_btn: add_film_btn
     canvas:
         Color: 
             rgb : 1, 1, 1
@@ -22,8 +23,16 @@
         top: root.top
         text: "добавление фильма"
         font_name: "./fonts/calibri.ttf"
+    Button:
+        id: add_film_btn
+        font_size: 40
+        text: "Appl"
+        font_name: "./fonts/calibri.ttf"
+        pos: root.width-self.width*3, 0
+        on_release: root.acceptOnRelease()
     
 
 <AddFilmMenuScreen>:
+    
     name: "AddFilmMenuScreen"
     AddFilmMenu
