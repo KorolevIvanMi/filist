@@ -33,3 +33,6 @@ class AddFilmMenu(Widget):
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value
+    def on_rating_selected(self, value):
+       
+        print(f"Выбран рейтинг: {value}")

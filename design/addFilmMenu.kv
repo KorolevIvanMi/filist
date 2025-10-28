@@ -50,6 +50,12 @@
         font_name: "./fonts/calibri.ttf"
         font_size: 30  
         pos: root.width / 5.35, root.height/8*5.2
+    Label:
+        color:(0,0,0)
+        text: 'Рейтинг'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.3, root.height/8*4.7
     
     TextInput:
         text: ''
@@ -79,7 +85,10 @@
         font_size: 20
         font_name: "./fonts/calibri.ttf"
         on_release: root.open_status_dropdown()
-    
+    CustomLayotForRating:
+        id:rating_layout
+        pos: root.width / 4, root.height/8*4.95
+        on_selected_rating: root.on_rating_selected(args[1])
 <AddFilmMenuScreen>:
     
     name: "AddFilmMenuScreen"
