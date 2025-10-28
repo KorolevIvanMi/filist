@@ -52,10 +52,16 @@
         pos: root.width / 5.35, root.height/8*5.2
     Label:
         color:(0,0,0)
-        text: 'Рейтинг'
+        text: 'Рейтинг:'
         font_name: "./fonts/calibri.ttf"
         font_size: 30  
         pos: root.width / 5.3, root.height/8*4.7
+    Label:
+        color:(0,0,0)
+        text: 'Комментарий:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 4.8, root.height/8*4.2
     
     TextInput:
         text: ''
@@ -65,6 +71,7 @@
         font_size: 20
         background_color: 1, 1, 1, 1  
         foreground_color: 0, 0, 0, 1
+
     TextInput:
         text: ''
         size_hint: None, None
@@ -89,6 +96,14 @@
         id:rating_layout
         pos: root.width / 4, root.height/8*4.95
         on_selected_rating: root.on_rating_selected(args[1])
+    TextInput:
+        text: ''
+        size_hint: None, None
+        pos: root.width / 6 + 30, 150
+        size: 1220, 440
+        font_size: 20
+        background_color: 230/255, 230/255, 230/255, 1  
+        foreground_color: 0, 0, 0, 1
 <AddFilmMenuScreen>:
     
     name: "AddFilmMenuScreen"
