@@ -183,29 +183,41 @@ class myDataBase:
             return films
          
     def add_film_to_bd(self, film_name, film_genre, film_status, film_rating, film_discription):
+    # Очистка и нормализация данных
+        film_name = film_name.strip()
+        film_genre = film_genre.strip()
+        film_status = film_status.strip()
+        film_rating = str(film_rating).strip() if film_rating else "0"
+        film_discription = film_discription.strip()
+        
+        # Отладочная печать
+        print(f"Поиск фильма: '{film_name}', '{film_genre}', '{film_status}', '{film_rating}'")
+        
         with sq.connect(self.db_path) as con:
             con.row_factory = sq.Row 
             cur = con.cursor()
-            # проверка существования фильма
+            
+            # Проверка существования фильма (исправленный запрос)
             cur.execute('''
-                        SELECT filmlist.name,   genre.name as genre_name,  status.name as status_name, rating, filmlist.description, filmlist.film_id FROM filmlist
-                        JOIN genre ON filmlist.genre  = genre.genre_id
-                        JOIN status ON filmlist.status = status.status_id
-                        WHERE filmlist.name = ? AND genre.name = ?
-						AND status.name = ? AND rating = ?
-                        ''', (film_name, film_genre, film_status, film_rating,))
+                SELECT filmlist.name, filmlist.genre as genre_id, 
+                    genre.name as genre_name, status.name as status_name, 
+                    rating, filmlist.description, filmlist.film_id 
+                FROM filmlist
+                JOIN genre ON filmlist.genre = genre.genre_id
+                JOIN status ON filmlist.status = status.status_id
+                WHERE LOWER(filmlist.name) = LOWER(?) 
+                AND LOWER(genre.name) = LOWER(?)
+                AND LOWER(status.name) = LOWER(?)
+                AND rating = ?
+            ''', (film_name, film_genre, film_status, film_rating))
+            
             results = cur.fetchall()
-            films = []
-            for row in results:
-                film_dict = {
-                    'name': row['name'],
-                    'genre_id': row['genre_id']
-                }
-                films.append(film_dict)
-            if(films == []):
-                # добавление жанра в таблицу жанров и формирование genre_id
+            print(f"Найдено совпадений: {len(results)}")
+            
+            if not results:  # Фильм не найден
+                # Добавление жанра в таблицу жанров и формирование genre_id
                 genre_id = -1
-                cur.execute('''SELECT * from genre where name = ?''', (film_genre,))
+                cur.execute('''SELECT * from genre where LOWER(name) = LOWER(?)''', (film_genre,))
                 results = cur.fetchall()
                 films = []
                 for row in results:
@@ -214,14 +226,18 @@ class myDataBase:
                         'genre_id': row['genre_id']
                     }
                     films.append(film_dict)
-                if (films == []):
+                
+                if not films:
                     cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
                     genre_id = cur.lastrowid
+                    print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
                 else:
                     genre_id = films[0]['genre_id']
-                # добавление статуса фильма и формирования status_id
+                    print(f"Найден существующий жанр: {film_genre} (id: {genre_id})")
+                
+                # Добавление статуса фильма и формирование status_id
                 status_id = -1
-                cur.execute('''SELECT * from genre where name = ?''', (film_status,))
+                cur.execute('''SELECT * from status where LOWER(name) = LOWER(?)''', (film_status,))
                 results = cur.fetchall()
                 films = []
                 for row in results:
@@ -230,29 +246,36 @@ class myDataBase:
                         'status_id': row['status_id']
                     }
                     films.append(film_dict)
-                status_id = films[0][status_id]
-                # создание rating_id
+                
+                if films:
+                    status_id = films[0]['status_id']
+                    print(f"Найден статус: {film_status} (id: {status_id})")
+                else:
+                    # Если статус не найден, можно добавить его или использовать значение по умолчанию
+                    print(f"Статус '{film_status}' не найден в базе!")
+                    return 0
+                
+                # Подготовка рейтинга
                 rating_id = film_rating
-                results = cur.fetchall()
-                films = []
-                for row in results:
-                    film_dict = {
-                        'name': row['name'],
-                        'genre_id': row['genre_id']
-                    }
-                    films.append(film_dict)
-                # добавление фильма в таблицу
+                if rating_id == "":
+                    rating_id = "0"
+                
+                # Добавление фильма в таблицу
                 cur.execute('''INSERT INTO filmlist(name, genre, status, rating, description) VALUES (?, ?, ?, ?, ?)''', 
-                            (film_name, genre_id, status_id, rating_id, film_discription, ))
-                print("Фильм добавлет в таблицу")
+                            (film_name, genre_id, status_id, rating_id, film_discription))
+                
+                con.commit()
+                print("Фильм успешно добавлен в таблицу")
                 return 1
             else:
                 print("Такой фильм уже существует, попробуйте заного")
-                return 0     
-            
+                # Вывод информации о найденных дубликатах для отладки
+                for row in results:
+                    print(f"Найден дубликат: {row['name']} (id: {row['film_id']}), жанр: {row['genre_name']}, статус: {row['status_name']}, рейтинг: {row['rating']}")
+                return 0
 
-        
-        
+            
+            
 if __name__ == "__main__":
     db = myDataBase()
     db.db_init()

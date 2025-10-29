@@ -19,7 +19,7 @@ class myLayout(FloatLayout):
     search_text = ObjectProperty(None)
     status_dropdown = None
     status_button = ObjectProperty(None)
-    rating_layout = None
+    
     scroll_menu = ObjectProperty(None) 
     accept_filrs_btn = ObjectProperty(None)
     reset_filtrs_btn = ObjectProperty(None)
@@ -27,7 +27,7 @@ class myLayout(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-        self.rating_layout = CustomLayotForRating()
+        
         self.setup_status_dropdown()
         
         
