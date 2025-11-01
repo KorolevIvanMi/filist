@@ -33,7 +33,6 @@ class myLayout(FloatLayout):
         app = App.get_running_app()
         app.bind(data_updated=self.on_data_updated)
 
-
     def on_data_updated(self, instance, value):
         
         if value:  # Если флаг стал True
