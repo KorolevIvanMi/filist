@@ -6,6 +6,7 @@
     film_genre_txt: film_genre_txt
     film_description_txt: film_description_txt
     rating_layout: rating_layout
+    get_back_btn: get_back_btn
     canvas:
         Color: 
             rgb : 1, 1, 1
@@ -36,6 +37,13 @@
         font_name: "./fonts/calibri.ttf"
         pos: root.width-self.width*3, 0
         on_release: root.acceptOnRelease()
+    Button:
+        id: get_back_btn
+        font_size: 40
+        text: "GB"
+        font_name: "./fonts/calibri.ttf"
+        pos: root.width-self.width*2+20, 0
+        on_release: root.getBackOnRelease()
     Label:
         color: (0,0,0)
         text:'Название фильма:'
@@ -72,7 +80,7 @@
         text: ''
         size_hint: None, None
         pos: root.width / 3, root.height/8*6.45
-        size: 400, 30
+        size: 400, 36
         font_size: 20
         background_color: 1, 1, 1, 1  
         foreground_color: 0, 0, 0, 1
@@ -82,7 +90,7 @@
         text: ''
         size_hint: None, None
         pos: root.width / 4, root.height/8*5.95
-        size: 400, 30
+        size: 400, 36
         font_size: 20
         background_color: 1, 1, 1, 1  
         foreground_color: 0, 0, 0, 1
@@ -90,7 +98,7 @@
         id: status_button
         text: 'Выберите статус'
         size_hint: None, None
-        size: 150, 30
+        size: 150, 36
         pos: root.width / 4  , root.height/8*5.46
         background_color: 136/255,136/255,136/255, 1
         background_normal: ''

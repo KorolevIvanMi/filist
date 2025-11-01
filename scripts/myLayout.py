@@ -1,5 +1,5 @@
 from kivy.uix.settings import text_type
-
+from kivy.app import App
 from kivy.lang import Builder
 import os
 from kivy.uix.floatlayout import FloatLayout
@@ -27,11 +27,28 @@ class myLayout(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-        
         self.setup_status_dropdown()
-        
-        
         Clock.schedule_once(self.setup_scroling_menu, 0.1)
+
+        app = App.get_running_app()
+        app.bind(data_updated=self.on_data_updated)
+
+
+    def on_data_updated(self, instance, value):
+        
+        if value:  # Если флаг стал True
+            print("Обнаружено обновление данных, обновляю список...")
+            self.refresh_data()
+            # Сбрасываем флаг обратно
+            app = App.get_running_app()
+            app.data_updated = False
+
+    def refresh_data(self):
+        """Обновление данных из базы"""
+        data_from_db = self.db.get_all_films()
+        if self.scroll_menu:
+            self.scroll_menu.update_data(data_from_db)
+            print("Данные успешно обновлены")
         
 # Поиск по названию
     def searchOnPress(self):

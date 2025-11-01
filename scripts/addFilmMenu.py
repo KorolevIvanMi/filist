@@ -14,6 +14,7 @@ class AddFilmMenu(Widget):
     film_genre_txt = ObjectProperty(None)
     film_description_txt =  ObjectProperty(None)
     rating_layout = ObjectProperty(None)
+    get_back_btn = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -30,12 +31,15 @@ class AddFilmMenu(Widget):
 
         isfilmin = self.db.add_film_to_bd(film_name, film_genre, film_status, film_rating, film_discription)
         if (isfilmin == 1):
-            print("Урааа")
             app = App.get_running_app()
+
+            app.data_updated = True
             app.root.current = "mainScreen"
-        
+            
 
-
+    def getBackOnRelease(self):
+        app = App.get_running_app()
+        app.root.current = "mainScreen"
 
     def setup_status_dropdown(self):
         #Настройка dropdown для статуса
