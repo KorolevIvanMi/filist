@@ -36,7 +36,7 @@
         text: "Appl"
         font_name: "./fonts/calibri.ttf"
         pos: root.width-self.width*3, 0
-        on_release: root.acceptOnRelease()
+        # on_release: root.acceptOnRelease()
     Button:
         id: get_back_btn
         font_size: 40
@@ -77,6 +77,7 @@
     
     TextInput:
         id: film_name_txt
+        readonly: True
         text: ''
         size_hint: None, None
         pos: root.width / 3, root.height/8*6.45
@@ -122,5 +123,6 @@
 <redactFilmMenuScreen>:
     
     name: "redactFilmMenuScreen"
-    RedactFilmMenu
+    RedactFilmMenu:
+        id: redact_film_menu
         

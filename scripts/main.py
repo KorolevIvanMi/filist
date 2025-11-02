@@ -22,11 +22,14 @@ class AddFilmMenuScreen(Screen):
     pass
 
 class RedactFilmMenuScreen(Screen):
-    pass
+    def on_enter(self, *args):
+        # Этот метод вызывается автоматически при входе на экран
+        if self.ids.redact_film_menu:  # Проверяем, что виджет существует
+            self.ids.redact_film_menu.setup_all_data()
 
 class FillistApp(App):
         data_updated = BooleanProperty(False)
-        film_updated = BooleanProperty(False)
+        
         film_to_redact = NumericProperty(-1)
         def build(self):
             # СНАЧАЛА загружаем KV файл

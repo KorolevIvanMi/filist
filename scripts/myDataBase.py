@@ -276,5 +276,32 @@ class myDataBase:
                     print(f"Найден дубликат: {row['name']} (id: {row['film_id']}), жанр: {row['genre_name']}, статус: {row['status_name']}, рейтинг: {row['rating']}")
                 return 0
 
+    def find_film_by_id(self, film_id):
+        with sq.connect(self.db_path) as con:
+            con.row_factory = sq.Row 
+            cur = con.cursor()
+            film_id_int = int(film_id)
+            cur.execute('''
+                        SELECT filmlist.name, genre.name as genre_name, status.name as status_name, 
+                            rating, filmlist.description, filmlist.film_id 
+                        FROM filmlist
+                        JOIN genre ON filmlist.genre = genre.genre_id
+                        JOIN status ON filmlist.status = status.status_id
+                        WHERE filmlist.film_id = ?
+                        ''', (film_id_int,))
+            result = cur.fetchone()  # Используем fetchone()
             
+            if result:
+                film_dict = {
+                    'name': result['name'],
+                    'genre': result['genre_name'],  
+                    'status': result['status_name'], 
+                    'rating': result['rating'],
+                    'description': result['description'], 
+                    'film_id': result['film_id'],
+                    'active': False,  
+                }
+                return film_dict
+            return None
+                
     

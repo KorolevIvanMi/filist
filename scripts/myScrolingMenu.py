@@ -63,7 +63,8 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
                     button.background_color = (136/255, 136/255, 136/255, 1)
     def go_to_update_film(self):
         app = App.get_running_app()
-        app.film_to_redac = self.film_id
+        app.film_to_redact = self.film_id
+        
         app.root.current = "redactFilmMenuScreen"
 
 class RecycleGridLayout(GridLayout):
