@@ -7,6 +7,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty
 from myDataBase import myDataBase
+from kivy.app import App
 
 class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
     name = StringProperty()
@@ -60,7 +61,10 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
                 else:
                     # Кнопка неактивная - серый цвет
                     button.background_color = (136/255, 136/255, 136/255, 1)
-
+    def go_to_update_film(self):
+        app = App.get_running_app()
+        app.film_to_redac = self.film_id
+        app.root.current = "redactFilmMenuScreen"
 
 class RecycleGridLayout(GridLayout):
     def __init__(self, **kwargs):
@@ -80,5 +84,5 @@ class RV(RecycleView):
         self.data = data_list
     def update_data(self, new_data_list):
         self.data = new_data_list
-    
+
         

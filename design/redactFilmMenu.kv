@@ -1,0 +1,126 @@
+
+<RedactFilmMenu>:
+    add_film_btn: add_film_btn
+    status_button: status_button 
+    film_name_txt: film_name_txt
+    film_genre_txt: film_genre_txt
+    film_description_txt: film_description_txt
+    rating_layout: rating_layout
+    get_back_btn: get_back_btn
+    canvas:
+        Color: 
+            rgb : 1, 1, 1
+        Rectangle: 
+            pos: 0,0
+            size: root.width, root.height
+        Color:
+            rgb: 167/255, 115/255, 187/255
+        Rectangle:
+            pos: 0, 0
+            size: root.width /6 , root.height
+        Rectangle:
+            pos: root.width * 5/6, 0
+            size: root.width * 1 / 6 , root.height
+        Rectangle:
+            pos: root.width/6, root.height - root.height/8
+            size: root.width * 4 /6,  root.height / 8
+    Label:
+        font_size: 70
+        center: root.center
+        top: root.top
+        text: "редактирование фильма"
+        font_name: "./fonts/calibri.ttf"
+    Button:
+        id: add_film_btn
+        font_size: 40
+        text: "Appl"
+        font_name: "./fonts/calibri.ttf"
+        pos: root.width-self.width*3, 0
+        on_release: root.acceptOnRelease()
+    Button:
+        id: get_back_btn
+        font_size: 40
+        text: "GB"
+        font_name: "./fonts/calibri.ttf"
+        pos: root.width-self.width*2+20, 0
+        on_release: root.getBackOnRelease()
+    Label:
+        color: (0,0,0)
+        text:'Название фильма:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30        
+        pos: root.width / 4.4, root.height/8*6.2
+    Label:
+        color: (0,0,0)
+        text: 'Жанр:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.4, root.height/8*5.7
+    Label:
+        color:(0,0,0)
+        text: 'Статус:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.35, root.height/8*5.2
+    Label:
+        color:(0,0,0)
+        text: 'Рейтинг:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 5.25, root.height/8*4.7
+    Label:
+        color:(0,0,0)
+        text: 'Комментарий:'
+        font_name: "./fonts/calibri.ttf"
+        font_size: 30  
+        pos: root.width / 4.8, root.height/8*4.2
+    
+    TextInput:
+        id: film_name_txt
+        text: ''
+        size_hint: None, None
+        pos: root.width / 3, root.height/8*6.45
+        size: 400, 36
+        font_size: 20
+        background_color: 1, 1, 1, 1  
+        foreground_color: 0, 0, 0, 1
+
+    TextInput:
+        id: film_genre_txt
+        text: ''
+        size_hint: None, None
+        pos: root.width / 4, root.height/8*5.95
+        size: 400, 36
+        font_size: 20
+        background_color: 1, 1, 1, 1  
+        foreground_color: 0, 0, 0, 1
+    Button:
+        id: status_button
+        text: 'Выберите статус'
+        size_hint: None, None
+        size: 150, 36
+        pos: root.width / 4  , root.height/8*5.46
+        background_color: 136/255,136/255,136/255, 1
+        background_normal: ''
+        color: 1, 1, 1, 1
+        font_size: 20
+        font_name: "./fonts/calibri.ttf"
+        on_release: root.open_status_dropdown()
+    CustomLayotForRating:
+        id:rating_layout
+        pos: root.width / 4, root.height/8*4.95
+        on_selected_rating: root.on_rating_selected(args[1])
+    TextInput:
+        id: film_description_txt
+        text: ''
+        size_hint: None, None
+        pos: root.width / 6 + 30, 150
+        size: 1220, 440
+        font_size: 20
+        background_color: 230/255, 230/255, 230/255, 1  
+        foreground_color: 0, 0, 0, 1
+<redactFilmMenuScreen>:
+    
+    name: "redactFilmMenuScreen"
+    RedactFilmMenu
+        

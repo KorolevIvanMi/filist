@@ -186,7 +186,7 @@ class myDataBase:
     def add_film_to_bd(self, film_name, film_genre, film_status, film_rating, film_discription):
     # Очистка и нормализация данных
         film_name = film_name.strip()
-        film_genre = film_genre.strip()
+        film_genre = film_genre.strip().lower()  # Приводим к нижнему регистру
         film_status = film_status.strip()
         film_rating = str(film_rating).strip() if film_rating else "0"
         film_discription = film_discription.strip()
@@ -229,6 +229,7 @@ class myDataBase:
                     films.append(film_dict)
                 
                 if not films:
+                    # Добавляем жанр в нижнем регистре
                     cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
                     genre_id = cur.lastrowid
                     print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
@@ -276,8 +277,4 @@ class myDataBase:
                 return 0
 
             
-            
-if __name__ == "__main__":
-    db = myDataBase()
-    db.db_init()
     
