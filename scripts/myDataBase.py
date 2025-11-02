@@ -304,4 +304,61 @@ class myDataBase:
                 return film_dict
             return None
                 
-    
+    def update_data(self,film_id, film_name, film_genre, film_status, film_rating, film_discription):
+        film_name = film_name.strip()
+        film_genre = film_genre.strip().lower()  # Приводим к нижнему регистру
+        film_status = film_status.strip()
+        film_rating = str(film_rating).strip() if film_rating else "0"
+        film_discription = film_discription.strip()
+
+        with sq.connect(self.db_path) as con:
+            con.row_factory = sq.Row 
+            cur = con.cursor()
+            genre_id = -1
+            cur.execute('''SELECT * from genre where LOWER(name) = LOWER(?)''', (film_genre,))
+            results = cur.fetchall()
+            films = []
+            for row in results:
+                film_dict = {
+                    'name': row['name'],
+                    'genre_id': row['genre_id']
+                }
+                films.append(film_dict)
+                
+            if not films:
+               # Добавляем жанр в нижнем регистре
+                cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
+                genre_id = cur.lastrowid
+                print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
+            else:
+                genre_id = films[0]['genre_id']
+                print(f"Найден существующий жанр: {film_genre} (id: {genre_id})")
+                
+            # Добавление статуса фильма и формирование status_id
+            status_id = -1
+            cur.execute('''SELECT * from status where LOWER(name) = LOWER(?)''', (film_status,))
+            results = cur.fetchall()
+            films = []
+            for row in results:
+                film_dict = {
+                    'name': row['name'],
+                    'status_id': row['status_id']
+                }
+                films.append(film_dict)
+                
+            if films:
+                status_id = films[0]['status_id']
+                print(f"Найден статус: {film_status} (id: {status_id})")
+            else:
+                # Если статус не найден, можно добавить его или использовать значение по умолчанию
+                print(f"Статус '{film_status}' не найден в базе!")
+                return 0
+                
+            # Подготовка рейтинга
+            rating_id = film_rating
+            if rating_id == "":
+                rating_id = "0"
+            cur.execute('''UPDATE filmlist 
+                        set genre = ?, status = ? , rating = ?,  description= ?
+                        WHERE film_id = ?''', (genre_id, status_id, rating_id, film_discription,film_id))
+            return 1

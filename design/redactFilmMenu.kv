@@ -1,6 +1,6 @@
 
 <RedactFilmMenu>:
-    add_film_btn: add_film_btn
+    save_change_btn: save_change_btn
     status_button: status_button 
     film_name_txt: film_name_txt
     film_genre_txt: film_genre_txt
@@ -31,12 +31,12 @@
         text: "редактирование фильма"
         font_name: "./fonts/calibri.ttf"
     Button:
-        id: add_film_btn
+        id: save_change_btn
         font_size: 40
-        text: "Appl"
+        text: "Save"
         font_name: "./fonts/calibri.ttf"
         pos: root.width-self.width*3, 0
-        # on_release: root.acceptOnRelease()
+        on_release: root.save_changes()
     Button:
         id: get_back_btn
         font_size: 40

@@ -1,3 +1,4 @@
+from kivy.uix.settings import text_type
 
 from kivy.uix.widget import Widget
 from  kivy.properties import ObjectProperty
@@ -54,3 +55,20 @@ class RedactFilmMenu(Widget):
         # Обновляем текст кнопки на выбранный статус
         if self.status_button:
             self.status_button.text = value            
+    def save_changes(self):
+        app = App.get_running_app()
+        
+        film_id = app.film_to_redact
+        film_name = self.film_name_txt.text
+        film_genre = self.film_genre_txt.text
+        film_status = self.status_button.text
+        film_rating = self.rating_layout.selected_rating
+        film_discription = self.film_description_txt.text
+
+        isfilmin = self.db.update_data(film_id, film_name, film_genre, film_status, film_rating, film_discription )
+        print(isfilmin)
+        if (isfilmin == 1):
+            
+
+            app.data_updated = True
+            app.root.current = "mainScreen"
