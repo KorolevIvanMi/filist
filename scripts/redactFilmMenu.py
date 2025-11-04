@@ -15,6 +15,7 @@ class RedactFilmMenu(Widget):
     status_button = ObjectProperty(None)
     rating_layout = ObjectProperty(None)
     film_description_txt = ObjectProperty(None)
+    save_change_btn = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
