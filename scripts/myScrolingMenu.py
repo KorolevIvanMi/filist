@@ -57,10 +57,10 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
                 rating_value = i + 1
                 if rating_value <= self.rating:
                     # Кнопка активная - другой цвет
-                    button.background_color = (1, 0.8, 0, 1)  # Золотой для активных
+                    button.background_normal = ('./images/buttons/rating_btn_down.png') # Золотой для активных
                 else:
                     # Кнопка неактивная - серый цвет
-                    button.background_color = (136/255, 136/255, 136/255, 1)
+                    button.background_normal = ('./images/buttons/rating_btn_up.png')
     def go_to_update_film(self):
         app = App.get_running_app()
         app.film_to_redact = self.film_id
