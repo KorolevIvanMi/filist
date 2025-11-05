@@ -37,7 +37,7 @@ class RedactFilmMenu(Widget):
         self.film_genre_txt.text = s['genre']
         self.status_button.text = s['status']
         self.film_description_txt.text = s['description']
-        self.rating_layout.buttonIsDown(str(s["rating"]))
+        self.rating_layout.set_rating(str(s["rating"]))
 
     def on_rating_selected(self, value):
         print(f"Выбран рейтинг: {value}")

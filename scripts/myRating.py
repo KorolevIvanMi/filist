@@ -1,35 +1,65 @@
-from kivy.uix.accordion import StringProperty
-from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-
+from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.image import Image
 from kivy.properties import StringProperty
 
-class CustomButtonForRationg(Button):
-    pass
+class CustomButtonForRating(ButtonBehavior, Image):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.normal_source = './images/buttons/rating_btn_up600.png'
+        self.active_source = './images/buttons/rating_btn_down600.png'
+        self.source = self.normal_source
+        self.is_active = False
+        self.rating_value = ""  # Добавляем свойство для хранения значения
 
 class CustomLayotForRating(BoxLayout):
     selected_rating = StringProperty('')
+    
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.width = 100
         self.buttons = []
         self.orientation = 'horizontal'
+        self.spacing = 5
+        
         for i in range(5):
-            btn = CustomButtonForRationg(text = str(i+1))
-            btn.bind(on_release = lambda btn: self.buttonIsDown(btn.text))
+            btn = CustomButtonForRating()
+            btn.rating_value = str(i+1)  # Сохраняем значение рейтинга
+            btn.bind(on_release=self.buttonIsDown)
             self.buttons.append(btn)
             self.add_widget(btn)
 
-    def buttonIsDown(self, txt):    
-        self.selected_rating = txt
-        for button in self.buttons:
-            button.background_normal = ('./images/buttons/rating_btn_up.png')
-        for button in self.buttons:
-            if int(button.text) <= int(txt):
-                button.background_normal = ('./images/buttons/rating_btn_down.png')
+    def buttonIsDown(self, btn_instance):    
+        # Исправляем: получаем объект кнопки, а не текст
+        rating = int(btn_instance.rating_value)
+        self.selected_rating = str(rating)
+        
+        # Обновляем состояние всех кнопок
+        for i, button in enumerate(self.buttons):
+            if i < rating:
+                button.source = button.active_source
+                button.is_active = True
+            else:
+                button.source = button.normal_source
+                button.is_active = False
+
     def recetChoice(self):
         self.selected_rating = ''
         for button in self.buttons:
-            button.background_normal = ('./images/buttons/rating_btn_up.png')
+            button.source = button.normal_source
+            button.is_active = False
 
-    
+    # Добавляем метод для программной установки рейтинга
+    def set_rating(self, rating_value):
+        """Установить рейтинг программно (без нажатия кнопки)"""
+        if rating_value:
+            rating = int(rating_value)
+            self.selected_rating = str(rating)
+            for i, button in enumerate(self.buttons):
+                if i < rating:
+                    button.source = button.active_source
+                    button.is_active = True
+                else:
+                    button.source = button.normal_source
+                    button.is_active = False
+        else:
+            self.resetChoice()

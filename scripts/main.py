@@ -3,7 +3,7 @@ from kivy.uix.accordion import BooleanProperty
 from kivy.config import Config
 Config.set('graphics', 'width', '1920')
 Config.set('graphics', 'height', '1080')
-Config.set('graphics', 'resizable', False) 
+Config.set('graphics', 'resizable', True) 
 from kivy.app import App
 from kivy.lang import Builder
 import os

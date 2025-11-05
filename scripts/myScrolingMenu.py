@@ -5,9 +5,13 @@ from kivy.uix.recycleview import RecycleView
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
+from kivy.uix.image import Image
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty
 from myDataBase import myDataBase
 from kivy.app import App
+
+class CustomRatingImage(Image):
+    pass
 
 class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
     name = StringProperty()
@@ -25,7 +29,7 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
         self.rating = data.get('rating', 0)
         self.film_id = data.get('film_id', '')
         super(StatefulLabel, self).refresh_view_attrs(rv, index, data)
-        self.update_rating_buttons()
+        self.update_rating_images()
 
     def del_btn_realise(self, btn):
         db = myDataBase()
@@ -34,56 +38,46 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
             new_data = db.get_all_films()
             self.parent.parent.update_data(new_data)
 
-    def update_rating_buttons(self):
-        # Ждем пока все виджеты создадутся
+    def update_rating_images(self):
         from kivy.clock import Clock
-        Clock.schedule_once(self._update_rating_buttons)
+        Clock.schedule_once(self._update_rating_images)
 
-    def _update_rating_buttons(self, dt):
-        """Фактическое обновление кнопок"""
+    def _update_rating_images(self, dt):
+        """Обновление изображений рейтинга"""
         if not hasattr(self, 'ids'):
             return
             
-        # Ищем кнопки рейтинга (они находятся во втором BoxLayout)
-        rating_layout = None
-        for child in self.children:
-            if isinstance(child, BoxLayout) and len(child.children) == 5:
-                # Это layout с кнопками рейтинга
-                rating_layout = child
-                break
-        
-        if rating_layout:
-            for i, button in enumerate(rating_layout.children[::-1]):  # reversed
-                rating_value = i + 1
-                if rating_value <= self.rating:
-                    # Кнопка активная - другой цвет
-                    button.background_normal = ('./images/buttons/rating_btn_down.png') # Золотой для активных
+        # Обновляем все 5 изображений рейтинга
+        for i in range(1, 6):
+            image_id = f'rating_btn_{i}'
+            if image_id in self.ids:
+                if i <= self.rating:
+                    # Активная звезда
+                    self.ids[image_id].source = './images/buttons/rating_btn_down600.png'
                 else:
-                    # Кнопка неактивная - серый цвет
-                    button.background_normal = ('./images/buttons/rating_btn_up.png')
+                    # Неактивная звезда
+                    self.ids[image_id].source = './images/buttons/rating_btn_up600.png'
+
     def go_to_update_film(self):
         app = App.get_running_app()
         app.film_to_redact = self.film_id
-        
         app.root.current = "redactFilmMenuScreen"
 
 class RecycleGridLayout(GridLayout):
     def __init__(self, **kwargs):
         super(RecycleGridLayout, self).__init__(**kwargs)
-        self.bind(minimum_height=self.setter('height'))   
+        self.bind(minimum_height=self.setter('height'))
 
 class RV(RecycleView):
     def __init__(self, data_list=None, **kwargs):
         super(RV, self).__init__(**kwargs)
         
-        
         if data_list is None:
             # Данные по умолчанию, если список не передан
             data_list = [
-                {'name': 'Фильм 1', 'genre': 'Драма', 'status': 'Новый', 'rating': 4, 'film_id': 1,'active': False}
+                {'name': 'Фильм 1', 'genre': 'Драма', 'status': 'Новый', 'rating': 4, 'film_id': 1, 'active': False}
             ]
         self.data = data_list
+
     def update_data(self, new_data_list):
         self.data = new_data_list
-
-        
