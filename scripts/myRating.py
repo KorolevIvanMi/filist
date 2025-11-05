@@ -23,13 +23,13 @@ class CustomLayotForRating(BoxLayout):
     def buttonIsDown(self, txt):    
         self.selected_rating = txt
         for button in self.buttons:
-            button.background_color = (136/255,136/255,136/255, 1)
+            button.background_normal = ('./images/buttons/rating_btn_up.png')
         for button in self.buttons:
             if int(button.text) <= int(txt):
-                button.background_color = (1,204/255,0, 1)
+                button.background_normal = ('./images/buttons/rating_btn_down.png')
     def recetChoice(self):
         self.selected_rating = ''
         for button in self.buttons:
-            button.background_color = (136/255,136/255,136/255, 1)
+            button.background_normal = ('./images/buttons/rating_btn_up.png')
 
     
