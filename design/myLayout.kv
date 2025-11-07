@@ -1,11 +1,11 @@
+
 <myLayout>:
-    search_but: search_but
+    
     search_text: search_text
     status_button: status_button 
     rating_layout: rating_layout 
     scroll_menu: scroll_menu
-    accept_filrs_btn: accept_filrs_btn
-    reset_filtrs_btn: reset_filtrs_btn
+  
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -18,22 +18,34 @@
         size: root.width - self.width/20 , 30
         pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
 
-    Button:
-        id: search_but
-        text: 'S'
-        size_hint: None, None
-        size:30,30
-        color: 1,1,1,1
-        pos: root.width + root.width / 4.7  , root.height - self.height - 10
-        on_press: root.searchOnPress()
+  
+    
+    CustomButtonWith2States:
+        size_hint: (None, None)
+        size: 30, 30
+        mipmap: True
+        fit_mode: "fill"
+        pos:  root.width + root.width / 4.6  , root.height - self.height - 10
+        normal_source: "./images/buttons/Search_btn.png"
+        down_source: "./images/buttons/Search_btn_down.png"
+        on_release: root.searchOnPress()
     # Кнопка для работы с dropdown
+
     Button:
         id: status_button
+        background_color: 0, 0, 0, 0  # Прозрачный фон
+        canvas.before:
+            Color:
+                rgba: 136/255,136/255,136/255, 1  # Цвет кнопки
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [10,]
         text: 'Все'
         size_hint: None, None
         size: 150, 22
         pos: root.width / 3  , root.height - self.height * 6.15
-        background_color: 136/255,136/255,136/255, 1
+        # background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
         font_name: "./fonts/calibri.ttf"
@@ -43,28 +55,26 @@
         pos: root.width / 3  , root.height/1.23
         on_selected_rating: root.on_rating_selected(args[1])
 
-    Button:
-        id: accept_filrs_btn
-        text: "Acpt"
+
+    CustomButtonWith2States:
         size_hint: (None, None)
-        size: 40, 30
+        size: 30, 30
+        mipmap: True
+        fit_mode: "fill"
         pos:  root.width/2.1  , root.height/1.23
-        background_color: 136/255,136/255,136/255, 1
-        background_normal: ''
-        color: 1, 1, 1, 1
-        font_name: "./fonts/calibri.ttf"
+        normal_source: "./images/buttons/Apply_btn.png"
+        down_source: "./images/buttons/Apply_btn_down.png"
         on_release: root.apply_filters()
-    Button:
-        id: reset_filtrs_btn
-        text: "Rst"
+    CustomButtonWith2States:
         size_hint: (None, None)
-        size: 40, 30
+        size: 30, 30
+        mipmap: True
+        fit_mode: "fill"
         pos:  root.width/1.96  , root.height/1.23
-        background_color: 136/255,136/255,136/255, 1
-        background_normal: ''
-        color: 1, 1, 1, 1
-        font_name: "./fonts/calibri.ttf"
+        normal_source: "./images/buttons/Delete_btn.png"
+        down_source: "./images/buttons/Delete_btn_down.png"
         on_release: root.recet_filters()
+
 
 
     RV:

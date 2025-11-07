@@ -11,18 +11,22 @@ from myDropDown import StatusDropdown
 from myRating import CustomLayotForRating
 from myDataBase import myDataBase
 from myScrolingMenu import RV, StatefulLabel, RecycleGridLayout
+from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.image import Image
+from customButtonWith2States import CustomButtonWith2States
+
 class myLayout(FloatLayout):
     
     db = myDataBase()
     rating_layout = ObjectProperty(None)
-    search_but = ObjectProperty(None)
+    # search_but = ObjectProperty(None)
     search_text = ObjectProperty(None)
     status_dropdown = None
     status_button = ObjectProperty(None)
     
     scroll_menu = ObjectProperty(None) 
-    accept_filrs_btn = ObjectProperty(None)
-    reset_filtrs_btn = ObjectProperty(None)
+    # accept_filrs_btn = ObjectProperty(None)
+    # reset_filtrs_btn = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

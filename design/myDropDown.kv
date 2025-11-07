@@ -1,15 +1,27 @@
 <CustomDropdownButton>:
-    size_hint_y: None
-    height: '40dp'
-    background_color: self.button_color
+    background_color: 0, 0, 0, 0  # Прозрачный фон
+    canvas.before:
+        Color:
+            rgba: 136/255,136/255,136/255,1  # Цвет кнопки
+        RoundedRectangle:
+            pos: self.pos[0], self.pos[1] + 0.5  # Небольшое смещение сверху
+            size: self.size[0], self.size[1] - 1  # Чуть уменьшенная высота
+            radius: [dp(10),]
+
+    
+    
     background_normal: ''
     color: 1, 1, 1, 1
     font_name: "./fonts/calibri.ttf"
+    size_hint_y: None
+    height: '20dp'  # Уменьшенная высота для создания промежутков
+    
 
 <StatusDropdown>:
     canvas.before:
         Color:
-            rgb: 136/255,136/255,136/255
+            rgba: 136/255,136/255,136/255,0
         Rectangle:
             pos: self.pos
             size: self.size
+    margin: [0, 1, 0, 1]
