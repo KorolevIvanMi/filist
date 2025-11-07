@@ -8,10 +8,22 @@ class CustomButtonForRating(ButtonBehavior, Image):
         super().__init__(**kwargs)
         self.normal_source = './images/buttons/rating_btn_up600.png'
         self.active_source = './images/buttons/rating_btn_down600.png'
+        self.pressed_source = './images/buttons/rating_btn_cur600.png'
         self.source = self.normal_source
         self.is_active = False
-        self.rating_value = ""  # Добавляем свойство для хранения значения
+        self.rating_value = ""  
 
+    def on_state(self, instance, value):
+      
+        if value == 'down':
+            # Кнопка нажата, но еще не отпущена
+            self.source = self.pressed_source
+        else:
+            
+            if self.is_active:
+                self.source = self.active_source
+            else:
+                self.source = self.normal_source
 class CustomLayotForRating(BoxLayout):
     selected_rating = StringProperty('')
     
