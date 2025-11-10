@@ -1,12 +1,16 @@
+from kivy.lang import Builder
+Builder.load_file('./design/myDropDownAddAndRedact.kv')
+from myDropDownAddAndRedact import StatusDropdownAdd, CustomDropdownButtonAdd
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.app import App
-from myDropDown import StatusDropdown
+
 from kivy.clock import Clock
 from myDataBase import myDataBase
 from kivy.uix.button import Button
 from kivy.properties import ListProperty
 from kivy.uix.dropdown import DropDown
+
 
 
 
@@ -48,7 +52,7 @@ class AddFilmMenu(Widget):
 
     def setup_status_dropdown(self):
         #Настройка dropdown для статуса
-        self.status_dropdown = StatusDropdown()
+        self.status_dropdown = StatusDropdownAdd()
         self.status_dropdown.bind(on_select=self.on_status_select)
 
     def open_status_dropdown(self):
