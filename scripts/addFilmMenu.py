@@ -4,6 +4,11 @@ from kivy.app import App
 from myDropDown import StatusDropdown
 from kivy.clock import Clock
 from myDataBase import myDataBase
+from kivy.uix.button import Button
+from kivy.properties import ListProperty
+from kivy.uix.dropdown import DropDown
+
+
 
 class AddFilmMenu(Widget):
     add_film_btn = ObjectProperty(None)

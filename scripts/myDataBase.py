@@ -217,25 +217,26 @@ class myDataBase:
             
             if not results:  # Фильм не найден
                 # Добавление жанра в таблицу жанров и формирование genre_id
-                genre_id = -1
-                cur.execute('''SELECT * from genre where LOWER(name) = LOWER(?)''', (film_genre,))
-                results = cur.fetchall()
-                films = []
-                for row in results:
-                    film_dict = {
-                        'name': row['name'],
-                        'genre_id': row['genre_id']
-                    }
-                    films.append(film_dict)
-                
-                if not films:
-                    # Добавляем жанр в нижнем регистре
-                    cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
-                    genre_id = cur.lastrowid
-                    print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
-                else:
-                    genre_id = films[0]['genre_id']
-                    print(f"Найден существующий жанр: {film_genre} (id: {genre_id})")
+                if film_genre != "":
+                    genre_id = -1
+                    cur.execute('''SELECT * from genre where LOWER(name) = LOWER(?)''', (film_genre,))
+                    results = cur.fetchall()
+                    films = []
+                    for row in results:
+                        film_dict = {
+                            'name': row['name'],
+                            'genre_id': row['genre_id']
+                        }
+                        films.append(film_dict)
+                    
+                    if not films:
+                        # Добавляем жанр в нижнем регистре
+                        cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
+                        genre_id = cur.lastrowid
+                        print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
+                    else:
+                        genre_id = films[0]['genre_id']
+                        print(f"Найден существующий жанр: {film_genre} (id: {genre_id})")
                 
                 # Добавление статуса фильма и формирование status_id
                 status_id = -1

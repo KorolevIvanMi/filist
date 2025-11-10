@@ -1,4 +1,33 @@
 
+# <CustomDropdownButton>:
+#     background_color: 0, 0, 0, 0  # Прозрачный фон
+#     canvas.before:
+#         Color:
+#             rgba: 136/255,136/255,136/255,1  # Цвет кнопки
+#         RoundedRectangle:
+#             pos: self.pos[0], self.pos[1] + 0.5  # Небольшое смещение сверху
+#             size: self.size[0], self.size[1] - 1  # Чуть уменьшенная высота
+#             radius: [5,]
+
+    
+    
+#     background_normal: ''
+#     color: 1, 1, 1, 1
+#     font_name: "./fonts/calibri.ttf"
+#     size_hint_y: None
+#     height: '36dp'  # Уменьшенная высота для создания промежутков
+    
+
+# <StatusDropdown>:
+#     canvas.before:
+#         Color:
+#             rgba: 136/255,136/255,136/255,0
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+#     margin: [0, 1, 0, 1]
+
+
 <AddFilmMenu>:
     add_film_btn: add_film_btn
     status_button: status_button 
@@ -96,15 +125,22 @@
         foreground_color: 0, 0, 0, 1
     Button:
         id: status_button
-        text: 'Выберите статус'
+        background_color: 0, 0, 0, 0  # Прозрачный фон
+        canvas.before:
+            Color:
+                rgba: 136/255,136/255,136/255, 1  # Цвет кнопки
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [25,]
+        text: 'Все'
         size_hint: None, None
         size: 150, 36
-        pos: root.width / 4  , root.height/8*5.46
-        background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
-        font_size: 20
         font_name: "./fonts/calibri.ttf"
+        font_size: 20
+        pos: root.width / 4  , root.height/8*5.45
         on_release: root.open_status_dropdown()
     CustomLayotForRating:
         id:rating_layout
@@ -115,7 +151,7 @@
         text: ''
         size_hint: None, None
         pos: root.width / 6 + 30, 150
-        size: 1220, 440
+        size: 1150, 440
         font_size: 20
         background_color: 230/255, 230/255, 230/255, 1  
         foreground_color: 0, 0, 0, 1
