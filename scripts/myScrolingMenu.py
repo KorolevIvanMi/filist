@@ -9,6 +9,7 @@ from kivy.uix.image import Image
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty
 from myDataBase import myDataBase
 from kivy.app import App
+from customButtonWith2States import CustomButtonWith2States
 
 class CustomRatingImage(Image):
     pass

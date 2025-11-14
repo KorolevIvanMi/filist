@@ -40,36 +40,54 @@
         valign: 'middle'
         padding: (10,0)
         color: (0,0,0)
-    
-    BoxLayout:
-        size: 150, 30
-        size_hint_x: 0.3
-        CustomRatingImage:
-            id: rating_btn_1
-        CustomRatingImage:
-            id: rating_btn_2
-        CustomRatingImage:
-            id: rating_btn_3
-        CustomRatingImage:
-            id: rating_btn_4
-        CustomRatingImage:
-            id: rating_btn_5
+    AnchorLayout:
+        size_hint_x: 0.1
+        anchor_x: 'left'
+        anchor_y: 'center'
+        BoxLayout:
+            size_hint: None, None
+            size: 150, 30
+            spacing: 5
+            
+            CustomRatingImage:
+                id: rating_btn_1
+            CustomRatingImage:
+                id: rating_btn_2
+            CustomRatingImage:
+                id: rating_btn_3
+            CustomRatingImage:
+                id: rating_btn_4
+            CustomRatingImage:
+                id: rating_btn_5
 
     Widget:
-        size_hint_x: 0.05
-    
-    BoxLayout:
-        size_hint_x: 0.06
-        spacing: 5
+        size_hint_x: 0.07
         
-        Button:
-            text: 'Red'
-            size_hint_x: 0.2
-            on_release: root.go_to_update_film()
-        Button:
-            text: 'Del'
-            size_hint_x: 0.2
-            on_release: root.del_btn_realise(self)
+    
+    AnchorLayout:
+        size_hint_x: 0.06
+        anchor_x: 'left'
+        anchor_y: 'center'
+        BoxLayout:
+            size_hint: None, None
+            size: 90, 40
+            spacing: 5
+            
+            CustomButtonWith2States:
+                size_hint_x: 0.5
+                mipmap: True
+                fit_mode: "fill"
+                normal_source: "./images/buttons/Redact_btn.png"
+                down_source: "./images/buttons/Redact_btn_down.png"
+                on_release: root.go_to_update_film()
+            
+            CustomButtonWith2States:
+                size_hint_x: 0.5
+                mipmap: True
+                fit_mode: "fill"
+                normal_source: "./images/buttons/Delete_btn.png"
+                down_source: "./images/buttons/Delete_btn_down.png"
+                on_release: root.go_to_update_film()
 
 <RV>:
     viewclass: 'StatefulLabel'
@@ -78,5 +96,5 @@
         size_hint_y: None
         height: self.minimum_height
         default_size_hint: 1, None
-        default_size: 0, dp(40)
+        default_size: 0, dp(50)
         spacing: dp(10)
