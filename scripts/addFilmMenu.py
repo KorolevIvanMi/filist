@@ -15,7 +15,7 @@ from kivy.uix.dropdown import DropDown
 
 
 class AddFilmMenu(Widget):
-    add_film_btn = ObjectProperty(None)
+    
     db = myDataBase()
     status_button = ObjectProperty(None)
     status_dropdown = None
@@ -23,7 +23,7 @@ class AddFilmMenu(Widget):
     film_genre_txt = ObjectProperty(None)
     film_description_txt =  ObjectProperty(None)
     rating_layout = ObjectProperty(None)
-    get_back_btn = ObjectProperty(None)
+    
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

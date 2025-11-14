@@ -8,14 +8,14 @@ from myDataBase import myDataBase
 
 class RedactFilmMenu(Widget):
 
-    get_back_btn = ObjectProperty(None)
+    
     db = myDataBase()
     film_name_txt = ObjectProperty(None)
     film_genre_txt = ObjectProperty(None)
     status_button = ObjectProperty(None)
     rating_layout = ObjectProperty(None)
     film_description_txt = ObjectProperty(None)
-    save_change_btn = ObjectProperty(None)
+    
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

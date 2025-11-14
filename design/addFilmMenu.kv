@@ -1,12 +1,12 @@
 
 <AddFilmMenu>:
-    add_film_btn: add_film_btn
+    
     status_button: status_button 
     film_name_txt: film_name_txt
     film_genre_txt: film_genre_txt
     film_description_txt: film_description_txt
     rating_layout: rating_layout
-    get_back_btn: get_back_btn
+    
     canvas:
         Color: 
             rgb : 1, 1, 1
@@ -30,20 +30,38 @@
         top: root.top
         text: "добавление фильма"
         font_name: "./fonts/calibri.ttf"
-    Button:
-        id: add_film_btn
-        font_size: 40
-        text: "Appl"
-        font_name: "./fonts/calibri.ttf"
-        pos: root.width-self.width*3, 0
+    # Button:
+    #     id: add_film_btn
+    #     font_size: 40
+    #     text: "Appl"
+    #     font_name: "./fonts/calibri.ttf"
+    #     pos: root.width-self.width*3, 0
+    #     on_release: root.acceptOnRelease()
+    CustomButtonWith2States:
+        size_hint: (None, None)
+        size: 100, 100
+        mipmap: True
+        fit_mode: "fill"
+        pos:  root.width-self.width*3, 0
+        normal_source: "./images/buttons/Apply_btn.png"
+        down_source: "./images/buttons/Apply_btn_down.png"
         on_release: root.acceptOnRelease()
-    Button:
-        id: get_back_btn
-        font_size: 40
-        text: "GB"
-        font_name: "./fonts/calibri.ttf"
-        pos: root.width-self.width*2+20, 0
-        on_release: root.getBackOnRelease()
+    CustomButtonWith2States:
+        size_hint: (None, None)
+        size: 100, 100
+        mipmap: True
+        fit_mode: "fill"
+        pos:  root.width-self.width*2+20, 0
+        normal_source: "./images/buttons/Get_back_btn.png"
+        down_source: "./images/buttons/Get_back_btn_down.png"
+        on_release:root.getBackOnRelease()
+    # Button:
+    #     id: get_back_btn
+    #     font_size: 40
+    #     text: "GB"
+    #     font_name: "./fonts/calibri.ttf"
+    #     pos: 
+    #     on_release: root.getBackOnRelease()
     Label:
         color: (0,0,0)
         text:'Название фильма:'
