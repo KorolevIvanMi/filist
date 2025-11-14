@@ -1,10 +1,10 @@
 from kivy.uix.settings import text_type
-
+from myDropDownAddAndRedact import StatusDropdownAdd, CustomDropdownButtonAdd
 from kivy.uix.widget import Widget
 from  kivy.properties import ObjectProperty
 from kivy.app import App
 from myDataBase import myDataBase
-from myDropDown import StatusDropdown
+
 
 class RedactFilmMenu(Widget):
 
@@ -44,7 +44,7 @@ class RedactFilmMenu(Widget):
 
     def setup_status_dropdown(self):
         #Настройка dropdown для статуса
-        self.status_dropdown = StatusDropdown()
+        self.status_dropdown = StatusDropdownAdd()
         self.status_dropdown.bind(on_select=self.on_status_select)
     def open_status_dropdown(self):
         print("Open dropDown")
