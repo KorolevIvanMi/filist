@@ -10,13 +10,25 @@
         Rectangle: 
             pos: self.pos
             size: self.size
+        Color:
+            rgba: 230/255, 230/255, 230/255, 1
+        RoundedRectangle:
+            pos: root.width/ 8*2.08, root.height/10 *9.58
+            size: root.width - self.width/20, 30
+            radius: [15,]
+
     TextInput:
         id: search_text
+        background_color: 0, 0, 0, 0  # Прозрачный фон самого TextInput
+        foreground_color: 0, 0, 0, 1  # Цвет текста - черный
+        cursor_color: 0, 0, 0, 1  # Цвет курсора
+        padding: [10, 6]  # Отступы для текста
+        
         hint_text: "Поиск..."
-        hint_text_color: 136/255,136/255,136/255, 1
+        hint_text_color: 136/255, 136/255, 136/255, 1
         size_hint: None, None
-        size: root.width - self.width/20 , 30
-        pos: root.width - self.width + root.width / 4.69 , root.height - self.height - 10
+        size: root.width - self.width/20, 30
+        pos: root.width - self.width + root.width / 4.69, root.height - self.height - 10
 
   
     
