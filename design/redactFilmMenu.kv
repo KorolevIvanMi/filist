@@ -24,6 +24,20 @@
         Rectangle:
             pos: root.width/6, root.height - root.height/8
             size: root.width * 4 /6,  root.height / 8
+        Color:
+            rgba: 230/255, 230/255, 230/255, 1
+        RoundedRectangle:
+            size: root.width/10*2, root.height/29
+            pos: root.width/8*2.64, root.height/ 10 * 8.05
+            radius: [15,]
+        RoundedRectangle:
+            size: root.width/10*2, root.height/29
+            pos: root.width/8*1.97, root.height/ 10 * 7.42
+            radius: [15,]
+        RoundedRectangle:
+            size: root.width/10*6.27, root.height/2.44
+            pos: root.width/10*1.8, root.height/10 * 1.4
+            radius: [15,]
     Label:
         font_size: 70
         center: root.center
@@ -88,7 +102,7 @@
         pos: root.width / 3, root.height/8*6.45
         size: 400, 36
         font_size: 20
-        background_color: 1, 1, 1, 1  
+        background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
 
     TextInput:
@@ -98,7 +112,7 @@
         pos: root.width / 4, root.height/8*5.95
         size: 400, 36
         font_size: 20
-        background_color: 1, 1, 1, 1  
+        background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
     
     Button:
@@ -131,7 +145,7 @@
         pos: root.width / 6 + 30, 150
         size: 1150, 440
         font_size: 20
-        background_color: 230/255, 230/255, 230/255, 1  
+        background_color: 230/255, 230/255, 230/255, 0
         foreground_color: 0, 0, 0, 1
 <redactFilmMenuScreen>:
     
