@@ -13,8 +13,8 @@
         Color:
             rgba: 230/255, 230/255, 230/255, 1
         RoundedRectangle:
-            pos: root.width/ 8*2.08, root.height/10 *9.58
-            size: root.width - self.width/20, 30
+            pos: root.width/ 8*2.3, root.height/10 *9.3
+            size: root.width/10*9.2, root.height/10*0.4
             radius: [15,]
 
     TextInput:
@@ -26,9 +26,12 @@
         
         hint_text: "Поиск..."
         hint_text_color: 136/255, 136/255, 136/255, 1
+        font_name: "./fonts/Guidy.ttf"
+        font_size: 25
+        
         size_hint: None, None
-        size: root.width - self.width/20, 30
-        pos: root.width - self.width + root.width / 4.69, root.height - self.height - 10
+        size: root.width/10*9.2, root.height/10*0.4
+        pos: root.width/ 8*2.3, root.height/10 *9.3
 
   
     
@@ -55,16 +58,17 @@
                 radius: [10,]
         text: 'Все'
         size_hint: None, None
-        size: 150, 22
-        pos: root.width / 3  , root.height - self.height * 6.15
+        size: 150, 25
+        pos: root.width / 10 * 4 , root.height/10 * 8.18
         # background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
-        font_name: "./fonts/calibri.ttf"
+        font_name: "./fonts/Guidy.ttf"
+        font_size: 20
         on_release: root.open_status_dropdown()
     CustomLayotForRating:
         id:rating_layout
-        pos: root.width / 3  , root.height/1.23
+        pos: root.width / 10 * 4 , root.height/10 * 7.7
         on_selected_rating: root.on_rating_selected(args[1])
 
 
@@ -73,7 +77,7 @@
         size: 30, 30
         mipmap: True
         fit_mode: "fill"
-        pos:  root.width/2.1  , root.height/1.23
+        pos:  root.width / 10 * 5.5 , root.height/10 * 7.7
         normal_source: "./images/buttons/Apply_btn.png"
         down_source: "./images/buttons/Apply_btn_down.png"
         on_release: root.apply_filters()
@@ -82,7 +86,7 @@
         size: 30, 30
         mipmap: True
         fit_mode: "fill"
-        pos:  root.width/1.96  , root.height/1.23
+        pos:  root.width / 10 * 5.85, root.height/10 * 7.7
         normal_source: "./images/buttons/Delete_btn.png"
         down_source: "./images/buttons/Delete_btn_down.png"
         on_release: root.recet_filters()
