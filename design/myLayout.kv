@@ -33,7 +33,7 @@
         size: root.width/10*9.2, root.height/10*0.4
         pos: root.width/ 8*2.3, root.height/10 *9.3
 
-  
+
     
     CustomButtonWith2States:
         size_hint: (None, None)
@@ -55,7 +55,7 @@
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [10,]
+                radius: [12,]
         text: 'Все'
         size_hint: None, None
         size: 150, 25
@@ -66,6 +66,7 @@
         font_name: "./fonts/Guidy.ttf"
         font_size: 20
         on_release: root.open_status_dropdown()
+
     CustomLayotForRating:
         id:rating_layout
         pos: root.width / 10 * 4 , root.height/10 * 7.7

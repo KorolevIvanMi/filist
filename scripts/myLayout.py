@@ -25,7 +25,7 @@ class myLayout(FloatLayout):
     status_button = ObjectProperty(None)
     
     scroll_menu = ObjectProperty(None) 
-  
+
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -59,8 +59,8 @@ class myLayout(FloatLayout):
         print("Search in progress...")
         s = self.db.find_film_by_name(text_to_find)
         if(text_to_find == "" or text_to_find == "all"):
-             data_from_db = self.db.get_all_films()
-             self.scroll_menu.update_data(data_from_db)
+            data_from_db = self.db.get_all_films()
+            self.scroll_menu.update_data(data_from_db)
         else:
             self.scroll_menu.update_data(s)
 
@@ -86,7 +86,7 @@ class myLayout(FloatLayout):
 
 # Обработка выбора рейтинга
     def on_rating_selected(self, value):
-       pass
+        pass
         # print(f"Выбран рейтинг: {value}")
 # обработка списка фильмов  
     def setup_scroling_menu(self, dt = None):

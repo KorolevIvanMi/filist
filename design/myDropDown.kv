@@ -4,9 +4,9 @@
         Color:
             rgba: 136/255,136/255,136/255,1  # Цвет кнопки
         RoundedRectangle:
-            pos: self.pos[0], self.pos[1] + 0.5  # Небольшое смещение сверху
-            size: self.size[0], self.size[1] - 1  # Чуть уменьшенная высота
-            radius: [dp(10),]
+            pos: self.pos  # Убрали смещение - используем обычную позицию
+            size: self.size # Чуть уменьшенная высота
+            radius: [dp(12),]
 
     
     
@@ -15,7 +15,7 @@
     font_name: "./fonts/Guidy.ttf"
     font_size: 20
     size_hint_y: None
-    height: '20dp'  # Уменьшенная высота для создания промежутков
+    height: 25  # Уменьшенная высота для создания промежутков
     
 
 <StatusDropdown>:

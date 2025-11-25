@@ -9,7 +9,6 @@ class StatusDropdownAdd(DropDown):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.auto_width =200
-        
         statuses = ["Просмотрен", "В планах", "В процессе"]
         for status in statuses:
             btn = CustomDropdownButtonAdd(text = status)
