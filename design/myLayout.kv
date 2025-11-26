@@ -5,7 +5,7 @@
     status_button: status_button 
     rating_layout: rating_layout 
     scroll_menu: scroll_menu
-  
+
     canvas: 
         Rectangle: 
             pos: self.pos
@@ -37,10 +37,10 @@
     
     CustomButtonWith2States:
         size_hint: (None, None)
-        size: 30, 30
+        size: root.width/10* 0.33 , root.height/10*0.42
         mipmap: True
         fit_mode: "fill"
-        pos:  root.width + root.width / 4.6  , root.height - self.height - 10
+        pos:  root.width/10 * 12.13, root.height/10* 9.3
         normal_source: "./images/buttons/Search_btn.png"
         down_source: "./images/buttons/Search_btn_down.png"
         on_release: root.searchOnPress()
@@ -58,8 +58,8 @@
                 radius: [12,]
         text: 'Все'
         size_hint: None, None
-        size: 150, 25
-        pos: root.width / 10 * 4 , root.height/10 * 8.18
+        size: root.width/10*1.2, root.height/38
+        pos: root.width / 10 * 4 , root.height/10 * 8.17
         # background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
@@ -75,7 +75,7 @@
 
     CustomButtonWith2States:
         size_hint: (None, None)
-        size: 30, 30
+        size: root.width/10*0.25, root.height/10*0.32
         mipmap: True
         fit_mode: "fill"
         pos:  root.width / 10 * 5.5 , root.height/10 * 7.7
@@ -84,7 +84,7 @@
         on_release: root.apply_filters()
     CustomButtonWith2States:
         size_hint: (None, None)
-        size: 30, 30
+        size: root.width/10*0.25, root.height/10*0.32
         mipmap: True
         fit_mode: "fill"
         pos:  root.width / 10 * 5.85, root.height/10 * 7.7
@@ -96,5 +96,6 @@
 
     RV:
         id: scroll_menu
+        
         pos: root.width/4 + dp(20), rating_layout.y - rating_layout.height - 20  # Сдвиг на 20dp вправо
         size: root.width * 2/3 , root.height - rating_layout.height - 100  # Занимает оставшееся пространство

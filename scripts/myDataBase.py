@@ -50,7 +50,7 @@ class myDataBase:
             name TEXT NOT NULL)
             ''')
             
-           
+
             cur.execute('''
             CREATE TABLE IF NOT EXISTS filmlist(
             film_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -71,7 +71,7 @@ class myDataBase:
             for genre in pre_genres:
                 cur.execute('INSERT INTO genre (name) VALUES(?)', genre)
             
-           
+
             for film in pre_films:
                 cur.execute('''INSERT INTO filmlist (name, genre, status, rating, description) 
                             VALUES(?, ?, ?, ?, ?)''', film)
@@ -137,7 +137,7 @@ class myDataBase:
             return 0
 
     def find_films_with_filters(self, film_status, film_rating):
-         with sq.connect(self.db_path) as con:
+        with sq.connect(self.db_path) as con:
             con.row_factory = sq.Row 
             cur = con.cursor()
             if(film_rating != '' and film_status != "Все"):
@@ -182,7 +182,7 @@ class myDataBase:
                 }
                 films.append(film_dict)
             return films
-         
+
     def add_film_to_bd(self, film_name, film_genre, film_status, film_rating, film_discription):
     # Очистка и нормализация данных
         film_name = film_name.strip()
@@ -327,7 +327,7 @@ class myDataBase:
                 films.append(film_dict)
                 
             if not films:
-               # Добавляем жанр в нижнем регистре
+                # Добавляем жанр в нижнем регистре
                 cur.execute('''INSERT INTO genre(name) VALUES (?)''', (film_genre,))
                 genre_id = cur.lastrowid
                 print(f"Добавлен новый жанр: {film_genre} (id: {genre_id})")
