@@ -28,24 +28,33 @@
         Color:
             rgba: 230/255, 230/255, 230/255, 1
         RoundedRectangle:
-            size: root.width/10*2, root.height/29
-            pos: root.width/8*2.64, root.height/ 10 * 8.05
+            size: root.width/10*2, root.height/10* 0.35
+            pos: root.width/10*3.3, root.height/ 10 * 8.05
             radius: [15,]
         RoundedRectangle:
-            size: root.width/10*2, root.height/29
-            pos: root.width/8*1.97, root.height/ 10 * 7.42
+            size: root.width/10*2, root.height/10* 0.35
+            pos: root.width/10*2.45, root.height/ 10 * 7.42
             radius: [15,]
         RoundedRectangle:
-            size: root.width/10*6.27, root.height/2.44
+            size: root.width/10*6.27, root.height/10*4.1
             pos: root.width/10*1.8, root.height/10 * 1.4
             radius: [15,]
+    
     Label:
-        font_size: 70
+        font_size: 100
+        size_hint: None, None
+        size: root.width/10*2.53, root.height/10* .7
         center: root.center
-        top: root.top
-        text: "добавление фильма"
-        font_name: "./fonts/calibri.ttf"
-  
+        pos: root.width/5.5,  root.height/20 * 17.6
+        text: "Add-film"
+        font_name: "./fonts/FreeCheese-Regular.otf"
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, 0 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    #тут
     CustomButtonWith2States:
         size_hint: (None, None)
         size: 100, 100
@@ -55,6 +64,7 @@
         normal_source: "./images/buttons/Apply_btn.png"
         down_source: "./images/buttons/Apply_btn_down.png"
         on_release: root.acceptOnRelease()
+    #тут
     CustomButtonWith2States:
         size_hint: (None, None)
         size: 100, 100
@@ -66,33 +76,50 @@
         on_release:root.getBackOnRelease()
     
     Label:
-        color: (0,0,0)
-        text:'Название фильма:'
-        font_name: "./fonts/calibri.ttf"
-        font_size: 30        
-        pos: root.width / 4.4, root.height/8*6.2
+        color: (136/255,136/255,136/255)
+        font_size: 30
+        size_hint: None, None
+        size: root.width/10*1, root.height/10*0.3
+        center: root.center
+        pos: root.width/5.5,  root.height/10* 8.1
+        text: "Название:"
+        font_name: "./fonts/Guidy.ttf"
+        
+    #тут
     Label:
-        color: (0,0,0)
+        color: (136/255,136/255,136/255)
         text: 'Жанр:'
-        font_name: "./fonts/calibri.ttf"
-        font_size: 30  
-        pos: root.width / 5.4, root.height/8*5.7
+        font_name: "./fonts/Guidy.ttf"
+        font_size: 30
+        size_hint: None, None
+        center: root.center
+        size: root.width/10*0.5, root.height/10*0.3
+        pos: root.width / 5.32, root.height/8*5.96
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, 0
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    #тут
     Label:
-        color:(0,0,0)
+        color: (136/255,136/255,136/255)
         text: 'Статус:'
-        font_name: "./fonts/calibri.ttf"
+        font_name: "./fonts/Guidy.ttf"
         font_size: 30  
         pos: root.width / 5.35, root.height/8*5.2
+    #тут
     Label:
-        color:(0,0,0)
+        color: (136/255,136/255,136/255)
         text: 'Рейтинг:'
-        font_name: "./fonts/calibri.ttf"
+        font_name: "./fonts/Guidy.ttf"
         font_size: 30  
         pos: root.width / 5.25, root.height/8*4.7
+    #тут
     Label:
-        color:(0,0,0)
+        color: (136/255,136/255,136/255)
         text: 'Комментарий:'
-        font_name: "./fonts/calibri.ttf"
+        font_name: "./fonts/Guidy.ttf"
         font_size: 30  
         pos: root.width / 4.8, root.height/8*4.2
     
@@ -107,7 +134,7 @@
         font_size: 20
         background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
-
+    #тут
     TextInput:
         id: film_genre_txt
         text: ''
@@ -117,6 +144,7 @@
         font_size: 20
         background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
+    #тут
     Button:
         id: status_button
         background_color: 0, 0, 0, 0  # Прозрачный фон
@@ -132,14 +160,16 @@
         size: 150, 36
         background_normal: ''
         color: 1, 1, 1, 1
-        font_name: "./fonts/calibri.ttf"
+        font_name: "./fonts/Guidy.ttf"
         font_size: 20
         pos: root.width / 4  , root.height/8*5.45
         on_release: root.open_status_dropdown()
+    #тут
     CustomLayotForRating:
         id:rating_layout
         pos: root.width / 4, root.height/8*4.95
         on_selected_rating: root.on_rating_selected(args[1])
+    #тут
     TextInput:
         id: film_description_txt
         text: ''
