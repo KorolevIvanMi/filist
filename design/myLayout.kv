@@ -13,9 +13,34 @@
         Color:
             rgba: 230/255, 230/255, 230/255, 1
         RoundedRectangle:
-            pos: root.width/ 8*2.3, root.height/10 *9.3
+            pos: root.width/ 10*2.9, root.height/10 *9.3
             size: root.width/10*9.2, root.height/10*0.4
             radius: [15,]
+    
+    Label:
+        color: (136/255,136/255,136/255)
+        font_size: 25
+        size_hint: None, None
+        size: root.width/10, root.height/10 * 0.4
+        text: 'Статус:'
+        pos: root.width / 10 * 2.77 ,root.height/10 * 8.11
+        font_name: "./fonts/Guidy.ttf"
+        
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, 0 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    Label:
+        color: (136/255,136/255,136/255)
+        font_size: 25
+        text: 'Рейтинг:'
+        size_hint: None, None
+        size: root.width/10, root.height/10 * 0.4
+        pos: root.width / 10 * 2.85 , root.height/10 * 7.65
+        font_name: "./fonts/Guidy.ttf"
+    
 
     TextInput:
         id: search_text
@@ -31,7 +56,7 @@
         
         size_hint: None, None
         size: root.width/10*9.2, root.height/10*0.4
-        pos: root.width/ 8*2.3, root.height/10 *9.3
+        pos: root.width/ 10*2.9, root.height/10 *9.3
 
 
     
@@ -44,6 +69,17 @@
         normal_source: "./images/buttons/Search_btn.png"
         down_source: "./images/buttons/Search_btn_down.png"
         on_release: root.searchOnPress()
+
+    Label:
+        color: (136/255,136/255,136/255)
+        font_size: 25
+        size_hint: None, None
+        size: root.width/10, root.height/10 * 0.4
+        text: 'Фильтры:'
+        pos: root.width / 10 * 2.9 , root.height/10 * 8.65
+        font_name: "./fonts/Guidy.ttf"
+        
+        
     # Кнопка для работы с dropdown
 
     Button:

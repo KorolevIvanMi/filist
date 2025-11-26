@@ -8,7 +8,7 @@ from kivy.app import App
 from kivy.lang import Builder
 import os
 from kivy.properties import (
-     BooleanProperty, NumericProperty
+    BooleanProperty, NumericProperty
 )
 from kivy.uix.screenmanager import ScreenManager, Screen
 from FillistMainMenu import FillistMainMenu
