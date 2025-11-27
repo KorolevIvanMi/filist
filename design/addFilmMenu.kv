@@ -29,15 +29,15 @@
             rgba: 230/255, 230/255, 230/255, 1
         RoundedRectangle:
             size: root.width/10*2, root.height/10* 0.35
-            pos: root.width/10*3.3, root.height/ 10 * 8.05
+            pos: root.width/10*2.9, root.height/ 10 * 8.07
             radius: [15,]
         RoundedRectangle:
             size: root.width/10*2, root.height/10* 0.35
-            pos: root.width/10*2.45, root.height/ 10 * 7.42
+            pos: root.width/10*2.55, root.height/ 10 * 7.42
             radius: [15,]
         RoundedRectangle:
-            size: root.width/10*6.27, root.height/10*4.1
-            pos: root.width/10*1.8, root.height/10 * 1.4
+            pos: root.width / 10 * 1.9, root.height/10*0.5
+            size: root.width/10 * 6, root.height/10*4.8
             radius: [15,]
     
     Label:
@@ -54,23 +54,25 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-    #тут
+    
     CustomButtonWith2States:
         size_hint: (None, None)
-        size: 100, 100
+        
         mipmap: True
         fit_mode: "fill"
-        pos:  root.width-self.width*3, 10
+        size: root.width/10* 0.55, root.height/10 * 0.95
+        pos: root.width/10 * 8.4, root.height/10 * 0.1
         normal_source: "./images/buttons/Apply_btn.png"
         down_source: "./images/buttons/Apply_btn_down.png"
         on_release: root.acceptOnRelease()
-    #тут
+    
     CustomButtonWith2States:
         size_hint: (None, None)
-        size: 100, 100
+        
         mipmap: True
         fit_mode: "fill"
-        pos:  root.width-self.width*2+20, 10
+        size: root.width/10* 0.55, root.height/10 * 0.95
+        pos: root.width/10 * 9.02, root.height/10 * 0.1
         normal_source: "./images/buttons/Get_back_btn.png"
         down_source: "./images/buttons/Get_back_btn_down.png"
         on_release:root.getBackOnRelease()
@@ -85,7 +87,7 @@
         text: "Название:"
         font_name: "./fonts/Guidy.ttf"
         
-    #тут
+    
     Label:
         color: (136/255,136/255,136/255)
         text: 'Жанр:'
@@ -94,88 +96,93 @@
         size_hint: None, None
         center: root.center
         size: root.width/10*0.5, root.height/10*0.3
-        pos: root.width / 5.32, root.height/8*5.96
-        canvas.before:
-            Color:
-                rgba: 1, 0, 0, 0
-            Rectangle:
-                pos: self.pos
-                size: self.size
-    #тут
+        pos: root.width / 10 * 1.91, root.height/10 * 7.45
+
+    
     Label:
         color: (136/255,136/255,136/255)
         text: 'Статус:'
         font_name: "./fonts/Guidy.ttf"
-        font_size: 30  
-        pos: root.width / 5.35, root.height/8*5.2
-    #тут
+        font_size: 30
+        size_hint: None, None
+        center: root.center
+        size: root.width/10*0.5, root.height/10*0.3
+        pos: root.width / 10 * 1.93, root.height/10 * 6.84
+
+    
     Label:
         color: (136/255,136/255,136/255)
         text: 'Рейтинг:'
         font_name: "./fonts/Guidy.ttf"
-        font_size: 30  
-        pos: root.width / 5.25, root.height/8*4.7
-    #тут
+        font_size: 30
+        size_hint: None, None
+        center: root.center
+        size: root.width/10*0.7, root.height/10*0.3
+        pos: root.width / 10 * 1.9, root.height/10 * 6.23
+        
+    
     Label:
         color: (136/255,136/255,136/255)
         text: 'Комментарий:'
         font_name: "./fonts/Guidy.ttf"
-        font_size: 30  
-        pos: root.width / 4.8, root.height/8*4.2
+        font_size: 30
+        size_hint: None, None
+        center: root.center
+        size: root.width/10 * 1.2, root.height/10*0.3
+        pos: root.width / 10 * 1.87, root.height/10 * 5.62
+
     
-    
-        
     TextInput:
         id: film_name_txt
         text: ''
         size_hint: None, None
-        pos: root.width / 3, root.height/8*6.45
-        size: root.width/10*2, root.height/29
+        pos:  root.width/10*2.92, root.height/ 10 * 8.07
+        size: root.width/10*2, root.height/10* 0.35
         font_size: 20
         background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
-    #тут
+
     TextInput:
         id: film_genre_txt
         text: ''
         size_hint: None, None
-        pos: root.width / 4, root.height/8*5.95
-        size: 400, 36
+        pos: root.width/10*2.57, root.height/ 10 * 7.42
+        size: root.width/10*2, root.height/10* 0.35
         font_size: 20
         background_color: 1, 1, 1, 0
         foreground_color: 0, 0, 0, 1
-    #тут
+    
     Button:
         id: status_button
-        background_color: 0, 0, 0, 0  # Прозрачный фон
+        background_color: 0, 0, 0, 0  
         canvas.before:
             Color:
-                rgba: 136/255,136/255,136/255, 1  # Цвет кнопки
+                rgba: 136/255,136/255,136/255, 1  
             RoundedRectangle:
                 pos: self.pos
                 size: self.size
-                radius: [25,]
+                radius: [15,]
         text: 'Все'
         size_hint: None, None
-        size: 150, 36
+        size: root.width/10*0.78, root.height/10 * 0.3
         background_normal: ''
         color: 1, 1, 1, 1
         font_name: "./fonts/Guidy.ttf"
         font_size: 20
-        pos: root.width / 4  , root.height/8*5.45
+        pos: root.width / 10 * 2.56  , root.height/10 * 6.84
         on_release: root.open_status_dropdown()
-    #тут
+    
     CustomLayotForRating:
         id:rating_layout
-        pos: root.width / 4, root.height/8*4.95
+        pos: root.width /10 * 2.8, root.height/10 * 6.25
         on_selected_rating: root.on_rating_selected(args[1])
-    #тут
+    
     TextInput:
         id: film_description_txt
         text: ''
         size_hint: None, None
-        pos: root.width / 6 + 30, 150
-        size: 1150, 440
+        pos: root.width / 10 * 1.95, root.height/10*0.5
+        size: root.width/10 * 5.9, root.height/10*4.8
         font_size: 20
         background_color: 230/255, 230/255, 230/255, 0
         foreground_color: 0, 0, 0, 1
