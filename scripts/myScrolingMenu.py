@@ -10,7 +10,7 @@ from kivy.properties import BooleanProperty, StringProperty, NumericProperty
 from myDataBase import myDataBase
 from kivy.app import App
 from customButtonWith2States import CustomButtonWith2States
-
+from utils import get_resource_path
 class CustomRatingImage(Image):
     pass
 
@@ -54,10 +54,10 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
             if image_id in self.ids:
                 if i <= self.rating:
                     # Активная звезда
-                    self.ids[image_id].source = './images/buttons/rating_btn_down600.png'
+                    self.ids[image_id].source = get_resource_path('images/buttons/rating_btn_down600.png')
                 else:
                     # Неактивная звезда
-                    self.ids[image_id].source = './images/buttons/rating_btn_up600.png'
+                    self.ids[image_id].source = get_resource_path('images/buttons/rating_btn_up600.png')
 
     def go_to_update_film(self):
         app = App.get_running_app()

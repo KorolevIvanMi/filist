@@ -1,8 +1,8 @@
 import sqlite3 as sq
-
+from utils import get_resource_path 
 
 class myDataBase:
-    def __init__(self, db_path="./dataBase/film_base.db"):
+    def __init__(self, db_path=get_resource_path("dataBase/film_base.db")):
         self.db_path = db_path
     def db_init(self):
         pre_films = [
