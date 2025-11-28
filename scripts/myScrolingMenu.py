@@ -21,6 +21,17 @@ class StatefulLabel(RecycleDataViewBehavior, BoxLayout):
     rating = NumericProperty()
     active = BooleanProperty()
     index = 0
+    normal_redact_res = StringProperty("")
+    down_redact_res = StringProperty("")
+    normal_del_res = StringProperty("")
+    down_del_res = StringProperty("")
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.normal_redact_res = get_resource_path('images/buttons/Redact_btn.png')
+        self.down_redact_res = get_resource_path('images/buttons/Redact_btn_down.png')
+        self.normal_del_res = get_resource_path('images/buttons/Delete_btn.png')
+        self.down_del_res = get_resource_path('images/buttons/Delete_btn_down.png')
+
 
     def refresh_view_attrs(self, rv, index, data):
         self.index = index
@@ -73,6 +84,8 @@ class RV(RecycleView):
     def __init__(self, data_list=None, **kwargs):
         super(RV, self).__init__(**kwargs)
         
+
+
         if data_list is None:
             # Данные по умолчанию, если список не передан
             data_list = [

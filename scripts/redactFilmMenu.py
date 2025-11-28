@@ -4,7 +4,7 @@ from kivy.uix.widget import Widget
 from  kivy.properties import ObjectProperty
 from kivy.app import App
 from myDataBase import myDataBase
-
+from utils import *
 
 class RedactFilmMenu(Widget):
 
@@ -19,6 +19,11 @@ class RedactFilmMenu(Widget):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
+        self.normal_apl_res = get_resource_path('images/buttons/Apply_btn.png')
+        self.down_apl_res = get_resource_path('images/buttons/Apply_btn_down.png')
+        self.normal_get_back_res = get_resource_path('images/buttons/Get_back_btn.png')
+        self.down_get_back_res = get_resource_path('images/buttons/Get_back_btn_down.png')
         self.setup_status_dropdown()
 
     def on_enter(self):

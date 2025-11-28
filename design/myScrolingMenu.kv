@@ -81,16 +81,16 @@
                 mipmap: True
                 fit_mode: "fill"
 
-                normal_source: "./images/buttons/Redact_btn.png"
-                down_source: "./images/buttons/Redact_btn_down.png"
+                normal_source: root.normal_redact_res
+                down_source: root.down_redact_res
                 on_release: root.go_to_update_film()
             
             CustomButtonWith2States:
                 size_hint_x: 0.5
                 mipmap: True
                 fit_mode: "fill"
-                normal_source: "./images/buttons/Delete_btn.png"
-                down_source: "./images/buttons/Delete_btn_down.png"
+                normal_source: root.normal_del_res
+                down_source: root.down_del_res
                 on_release: root.del_btn_realise(self)
 
 <RV>:

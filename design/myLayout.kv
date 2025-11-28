@@ -24,7 +24,7 @@
         size: root.width/10, root.height/10 * 0.4
         text: 'Статус:'
         pos: root.width / 10 * 2.77 ,root.height/10 * 8.11
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         
         canvas.before:
             Color:
@@ -39,7 +39,7 @@
         size_hint: None, None
         size: root.width/10, root.height/10 * 0.4
         pos: root.width / 10 * 2.85 , root.height/10 * 7.65
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
     
 
     TextInput:
@@ -51,7 +51,7 @@
         
         hint_text: "Поиск..."
         hint_text_color: 136/255, 136/255, 136/255, 1
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 25
         
         size_hint: None, None
@@ -66,8 +66,8 @@
         mipmap: True
         fit_mode: "fill"
         pos:  root.width/10 * 12.13, root.height/10* 9.3
-        normal_source: "./images/buttons/Search_btn.png"
-        down_source: "./images/buttons/Search_btn_down.png"
+        normal_source: root.normal_search_res
+        down_source: root.down_search_res
         on_release: root.searchOnPress()
 
     Label:
@@ -77,7 +77,7 @@
         size: root.width/10, root.height/10 * 0.4
         text: 'Фильтры:'
         pos: root.width / 10 * 2.9 , root.height/10 * 8.65
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         
         
     # Кнопка для работы с dropdown
@@ -99,7 +99,7 @@
         # background_color: 136/255,136/255,136/255, 1
         background_normal: ''
         color: 1, 1, 1, 1
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 20
         on_release: root.open_status_dropdown()
 
@@ -115,8 +115,8 @@
         mipmap: True
         fit_mode: "fill"
         pos:  root.width / 10 * 5.5 , root.height/10 * 7.7
-        normal_source: "./images/buttons/Apply_btn.png"
-        down_source: "./images/buttons/Apply_btn_down.png"
+        normal_source: root.normal_apl_res
+        down_source: root.down_apl_res
         on_release: root.apply_filters()
     CustomButtonWith2States:
         size_hint: (None, None)
@@ -124,8 +124,8 @@
         mipmap: True
         fit_mode: "fill"
         pos:  root.width / 10 * 5.85, root.height/10 * 7.7
-        normal_source: "./images/buttons/Delete_btn.png"
-        down_source: "./images/buttons/Delete_btn_down.png"
+        normal_source: root.normal_del_res
+        down_source: root.down_del_res
         on_release: root.recet_filters()
 
 

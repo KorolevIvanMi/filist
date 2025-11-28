@@ -14,7 +14,7 @@ from myScrolingMenu import RV, StatefulLabel, RecycleGridLayout
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
 from customButtonWith2States import CustomButtonWith2States
-
+from utils import *
 class myLayout(FloatLayout):
     
     db = myDataBase()
@@ -30,6 +30,13 @@ class myLayout(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
+        self.normal_apl_res = get_resource_path('images/buttons/Apply_btn.png')
+        self.down_apl_res = get_resource_path('images/buttons/Apply_btn_down.png')
+        self.normal_del_res = get_resource_path('images/buttons/Delete_btn.png')
+        self.down_del_res = get_resource_path('images/buttons/Delete_btn_down.png')
+        self.normal_search_res = get_resource_path('images/buttons/Search_btn.png')
+        self.down_search_res = get_resource_path('images/buttons/Search_btn_down.png')
+
         self.setup_status_dropdown()
         Clock.schedule_once(self.setup_scroling_menu, 0.1)
 
@@ -87,7 +94,7 @@ class myLayout(FloatLayout):
 # Обработка выбора рейтинга
     def on_rating_selected(self, value):
         pass
-        # print(f"Выбран рейтинг: {value}")
+        
 # обработка списка фильмов  
     def setup_scroling_menu(self, dt = None):
         data_from_db = self.db.get_all_films()

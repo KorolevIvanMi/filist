@@ -47,7 +47,7 @@
         center: root.center
         pos: root.width/5.5,  root.height/20 * 17.8
         text: "Add-film"
-        font_name: "./fonts/FreeCheese-Regular.otf"
+        font_name: "FreeCheese"
         canvas.before:
             Color:
                 rgba: 1, 0, 0, 0 
@@ -60,10 +60,10 @@
         
         mipmap: True
         fit_mode: "fill"
-        size: root.width/10* 0.55, root.height/10 * 0.95
+        size: root.width/10* 0.55, root.height/10 * 0.98
         pos: root.width/10 * 8.4, root.height/10 * 0.1
-        normal_source: "./images/buttons/Apply_btn.png"
-        down_source: "./images/buttons/Apply_btn_down.png"
+        normal_source: root.normal_apl_res
+        down_source: root.down_apl_res
         on_release: root.acceptOnRelease()
     
     CustomButtonWith2States:
@@ -71,10 +71,10 @@
         
         mipmap: True
         fit_mode: "fill"
-        size: root.width/10* 0.55, root.height/10 * 0.95
+        size: root.width/10* 0.55, root.height/10 *0.98
         pos: root.width/10 * 9.02, root.height/10 * 0.1
-        normal_source: "./images/buttons/Get_back_btn.png"
-        down_source: "./images/buttons/Get_back_btn_down.png"
+        normal_source: root.normal_get_back_res
+        down_source: root.down_get_back_res
         on_release:root.getBackOnRelease()
     
     Label:
@@ -85,13 +85,13 @@
         center: root.center
         pos: root.width/5.5,  root.height/10* 8.1
         text: "Название:"
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         
     
     Label:
         color: (136/255,136/255,136/255)
         text: 'Жанр:'
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 30
         size_hint: None, None
         center: root.center
@@ -102,7 +102,7 @@
     Label:
         color: (136/255,136/255,136/255)
         text: 'Статус:'
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 30
         size_hint: None, None
         center: root.center
@@ -113,7 +113,7 @@
     Label:
         color: (136/255,136/255,136/255)
         text: 'Рейтинг:'
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 30
         size_hint: None, None
         center: root.center
@@ -124,7 +124,7 @@
     Label:
         color: (136/255,136/255,136/255)
         text: 'Комментарий:'
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 30
         size_hint: None, None
         center: root.center
@@ -167,7 +167,7 @@
         size: root.width/10*0.78, root.height/10 * 0.3
         background_normal: ''
         color: 1, 1, 1, 1
-        font_name: "./fonts/Guidy.ttf"
+        font_name: "Guidy"
         font_size: 20
         pos: root.width / 10 * 2.6  , root.height/10 * 6.84
         on_release: root.open_status_dropdown()
