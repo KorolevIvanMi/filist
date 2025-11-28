@@ -45,7 +45,7 @@
         size_hint: None, None
         size: root.width/10*2.53, root.height/10* .7
         center: root.center
-        pos: root.width/5.5,  root.height/20 * 17.6
+        pos: root.width/5.5,  root.height/20 * 17.8
         text: "Add-film"
         font_name: "./fonts/FreeCheese-Regular.otf"
         canvas.before:
@@ -169,12 +169,12 @@
         color: 1, 1, 1, 1
         font_name: "./fonts/Guidy.ttf"
         font_size: 20
-        pos: root.width / 10 * 2.56  , root.height/10 * 6.84
+        pos: root.width / 10 * 2.6  , root.height/10 * 6.84
         on_release: root.open_status_dropdown()
     
     CustomLayotForRating:
         id:rating_layout
-        pos: root.width /10 * 2.8, root.height/10 * 6.25
+        pos: root.width /10 * 2.7, root.height/10 * 6.25
         on_selected_rating: root.on_rating_selected(args[1])
     
     TextInput:

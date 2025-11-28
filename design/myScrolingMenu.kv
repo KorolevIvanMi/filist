@@ -17,6 +17,7 @@
             radius: [dp(26),]
     Label:
         text: root.name
+        font_size: 20
         size_hint_x: 0.2
         text_size: self.size
         halign: 'left'
@@ -27,6 +28,7 @@
     Label:
         text: root.genre
         size_hint_x: 0.2
+        font_size: 20
         text_size: self.size
         halign: 'left'
         valign: 'middle'
@@ -35,6 +37,7 @@
     Label:
         text: root.status
         size_hint_x: 0.15
+        font_size: 20
         text_size: self.size
         halign: 'left'
         valign: 'middle'
@@ -100,7 +103,7 @@
         spacing: dp(10)
         # Уменьшаем ширину на 40
         size_hint_x: None
-        width: root.width - 40 if root.width else 0
+        width: root.width/10 * 9.12
         canvas:
             Color:
                 rgba: 1,1,0, 0
