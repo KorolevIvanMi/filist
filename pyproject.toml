@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 kivy = "^2.3.1"
 kivy-garden = "^0.1.5"
+pyinstaller = {version = "^6.17.0", python = "<3.15"}
 
 
 [build-system]
