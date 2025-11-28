@@ -73,13 +73,14 @@
         anchor_y: 'center'
         BoxLayout:
             size_hint: None, None
-            size: 90, 40
+            size: root.width/10*0.71, root.height/10*8
             spacing: 5
             
             CustomButtonWith2States:
                 size_hint_x: 0.5
                 mipmap: True
                 fit_mode: "fill"
+
                 normal_source: "./images/buttons/Redact_btn.png"
                 down_source: "./images/buttons/Redact_btn_down.png"
                 on_release: root.go_to_update_film()
