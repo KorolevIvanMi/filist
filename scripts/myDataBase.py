@@ -1,9 +1,23 @@
+import os
 import sqlite3 as sq
-from utils import get_resource_path 
+import sys  # ← ДОБАВЬ ЭТОТ ИМПОРТ
+from utils import get_resource_path
+
+def get_db_path():
+    if hasattr(sys, '_MEIPASS'):
+        # В режиме EXE - используем папку пользователя
+        user_data_dir = os.path.join(os.path.expanduser('~'), 'Fillist')
+        os.makedirs(user_data_dir, exist_ok=True)
+        return os.path.join(user_data_dir, 'film_base.db')
+    else:
+        # В режиме разработки - используем локальную папку
+        return get_resource_path('database/film_base.db')
 
 class myDataBase:
-    def __init__(self, db_path=get_resource_path("dataBase/film_base.db")):
-        self.db_path = db_path
+    def __init__(self):
+        self.db_path = get_db_path()  # ← ИСПОЛЬЗУЙ ФУНКЦИЮ ЗДЕСЬ
+        self.db_init()  # ← ВЫЗЫВАЙ ИНИЦИАЛИЗАЦИЮ
+        
     def db_init(self):
         pre_films = [
             ("Зелёная миля", 1, 2, 4, "Фильм жестокий, но очень поучительный и ценный"),
@@ -31,7 +45,6 @@ class myDataBase:
         with sq.connect(self.db_path) as con:
             cur = con.cursor()
 
-        
             cur.execute('''
             CREATE TABLE IF NOT EXISTS status(
             status_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,7 +63,6 @@ class myDataBase:
             name TEXT NOT NULL)
             ''')
             
-
             cur.execute('''
             CREATE TABLE IF NOT EXISTS filmlist(
             film_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -61,20 +73,27 @@ class myDataBase:
             description TEXT NOT NULL)
             ''')
             
+            # Проверяем, есть ли уже данные в таблицах
+            cur.execute('SELECT COUNT(*) FROM status')
+            if cur.fetchone()[0] == 0:
+                for status in statuses:
+                    cur.execute('INSERT INTO status (name) VALUES(?)', status)
             
-            for status in statuses:
-                cur.execute('INSERT INTO status (name) VALUES(?)', status)
+            cur.execute('SELECT COUNT(*) FROM rating')
+            if cur.fetchone()[0] == 0:
+                for rating in ratings:
+                    cur.execute('INSERT INTO rating (value) VALUES(?)', rating)
             
-            for rating in ratings:
-                cur.execute('INSERT INTO rating (value) VALUES(?)', rating)
+            cur.execute('SELECT COUNT(*) FROM genre')
+            if cur.fetchone()[0] == 0:
+                for genre in pre_genres:
+                    cur.execute('INSERT INTO genre (name) VALUES(?)', genre)
             
-            for genre in pre_genres:
-                cur.execute('INSERT INTO genre (name) VALUES(?)', genre)
-            
-
-            for film in pre_films:
-                cur.execute('''INSERT INTO filmlist (name, genre, status, rating, description) 
-                            VALUES(?, ?, ?, ?, ?)''', film)
+            cur.execute('SELECT COUNT(*) FROM filmlist')
+            if cur.fetchone()[0] == 0:
+                for film in pre_films:
+                    cur.execute('''INSERT INTO filmlist (name, genre, status, rating, description) 
+                                VALUES(?, ?, ?, ?, ?)''', film)
     
     def find_film_by_name(self, film_name):
         with sq.connect(self.db_path) as con:
@@ -95,7 +114,6 @@ class myDataBase:
                     'genre': row['genre_name'],  
                     'status': row['status_name'], 
                     'rating': row['rating'],
-                    
                     'description': row['description'], 
                     'film_id': row['film_id'],
                     'active': False,  
@@ -129,11 +147,9 @@ class myDataBase:
             return films
         
     def del_film(self, film_id):
-            
         with sq.connect(self.db_path) as con:
             cur = con.cursor()
             cur.execute('''DELETE FROM filmlist where film_id = ?''', (film_id,))
-            
             return 0
 
     def find_films_with_filters(self, film_status, film_rating):
@@ -175,7 +191,6 @@ class myDataBase:
                     'genre': row['genre_name'],  
                     'status': row['status_name'], 
                     'rating': row['rating'],
-                    
                     'description': row['description'], 
                     'film_id': row['film_id'],
                     'active': False,  
@@ -184,7 +199,7 @@ class myDataBase:
             return films
 
     def add_film_to_bd(self, film_name, film_genre, film_status, film_rating, film_discription):
-    # Очистка и нормализация данных
+        # Очистка и нормализация данных
         film_name = film_name.strip()
         film_genre = film_genre.strip().lower()  # Приводим к нижнему регистру
         film_status = film_status.strip()
