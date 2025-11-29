@@ -38,10 +38,7 @@ class AddFilmMenu(Widget):
 
 
 
-    def on_enter(self):
-        self.film_description_txt.text = ""
-        self.film_genre_txt.text = ""
-        self.film_name_txt.text = ""
+    
         
     def acceptOnRelease(self):
         film_name = self.film_name_txt.text
